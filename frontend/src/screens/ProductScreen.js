@@ -12,7 +12,7 @@ const ProductScreen = (props) => {
             setProduct(res.data)
         }
         fetchProduct()
-    },[])
+    },[props.match])
 
 
 
