@@ -26,3 +26,4 @@ yarn-error.log*
 frontend/node_modules
 
 mern-e-commerce.code-workspace
+backend/seeder.js
