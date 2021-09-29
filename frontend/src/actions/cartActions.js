@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { bindActionCreators } from 'redux'
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants'
 
 export const addToCart=(id, qty)=> async (dispatch, getState)=>{
@@ -15,5 +16,15 @@ export const addToCart=(id, qty)=> async (dispatch, getState)=>{
             qty
         }
     })
-    localStorage.setItem('cartItems', JSON.stringify(getState().cartItems))
+    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}
+
+export const removeFromCart = (id) => (dispatch, getState) =>{
+    dispatch({
+        type:CART_REMOVE_ITEM,
+        payload:id
+    })
+
+
+localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
