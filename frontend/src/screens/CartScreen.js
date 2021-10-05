@@ -32,7 +32,7 @@ const CartScreen = (props) => {
         <Row>
             <Col md={8}>
                 <h1>Shopping Cart</h1>
-                {cartItems.length === 0 ? <Message>Uh Oh !, Nothing to see here <Link to='/'> Go Back</Link></Message> :(
+                {cartItems.length === 0 ? <Message>Roh Oh!, Nothing to see here <Link to='/'> Go Back</Link></Message> :(
                     <ListGroup variant='flush'>
                         {cartItems.map((item)=>(
                             <ListGroup.Item key={item.product}>
