@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container} from 'react-bootstrap';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomeScreen from './screens/HomeScreen';
@@ -9,6 +9,7 @@ import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ShippingScreen from './screens/ShippingScreen';
 
 
 const App=()=> {
@@ -19,6 +20,7 @@ const App=()=> {
     <main className='py-3'>
       <Container>
         <Route path='/' component={HomeScreen} exact ></Route>
+        <Route path='/shipping' component={ShippingScreen} exact ></Route>
         <Route path='/login' component={LoginScreen}></Route>
         <Route path='/profile' component={ProfileScreen}></Route>
         <Route path='/register' component={RegisterScreen}></Route>
