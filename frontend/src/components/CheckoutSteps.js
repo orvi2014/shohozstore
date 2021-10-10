@@ -3,13 +3,13 @@ import {Nav, Spinner} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 
-const CheckoutSteps = ({step1, step2, step3, step4, act }) => {
+const CheckoutSteps = ({step1, step2, step3, step4, act1,act2, act3 }) => {
     return (
         <Nav className="justify-content-center mb-4">
             <Nav.Item className="border border-dark">
                 {step1 ? (
                     <LinkContainer to='/login'>
-                        <Nav.Link>Sign In</Nav.Link>
+                        <Nav.Link>Sign In <i class="fas fa-check-circle"></i></Nav.Link>
                     </LinkContainer>
 
                 ):<Nav.Link disabled>Sign-In</Nav.Link>}
@@ -19,7 +19,9 @@ const CheckoutSteps = ({step1, step2, step3, step4, act }) => {
                 {step2 ? (
                     
                     <LinkContainer to='/shipping'>
-                        <Nav.Link>Shipping {act? (<Spinner size="sm" animation="grow" />):''}</Nav.Link>
+                        <Nav.Link>Shipping {act1? (<Spinner size="sm" animation="grow" />)
+                        :act2 || act3? <i class="fas fa-check-circle"></i> 
+                        :''}</Nav.Link>
                     </LinkContainer>
 
                 ):<Nav.Link disabled>Shipping</Nav.Link>}
@@ -29,7 +31,8 @@ const CheckoutSteps = ({step1, step2, step3, step4, act }) => {
             <Nav.Item className="border border-dark">
                 {step3 ? (
                     <LinkContainer to='/payment'>
-                        <Nav.Link>Payment</Nav.Link>
+                        <Nav.Link>Payment {act2? (<Spinner size="sm" animation="grow" />):act3? <i class="fas fa-check-circle"></i> 
+                        :'' }</Nav.Link>
                     </LinkContainer>
 
                 ):<Nav.Link disabled>Payment</Nav.Link>}
@@ -38,7 +41,7 @@ const CheckoutSteps = ({step1, step2, step3, step4, act }) => {
             <Nav.Item className="border border-dark">
                 {step4 ? (
                     <LinkContainer to='/placeorder'>
-                        <Nav.Link>Place Order</Nav.Link>
+                        <Nav.Link>Place Order {act3? (<Spinner size="sm" animation="grow" />):''}</Nav.Link>
                     </LinkContainer>
 
                 ):<Nav.Link disabled>Place Order</Nav.Link>}

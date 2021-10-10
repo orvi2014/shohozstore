@@ -45,7 +45,7 @@ const ProfileScreen = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    if(password !=confirmPassword){
+    if(password !==confirmPassword){
         setMessage('Passwords Do Not Match')
     }else{
         dispatch(updateUserProfile({id:user._id, name,email,password}))
