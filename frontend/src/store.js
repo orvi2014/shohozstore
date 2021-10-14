@@ -5,6 +5,7 @@ import {productListReducer, productDetailsReducer} from './reducers/productReduc
 import { cartReducer } from './reducers/cartReducers.js'
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer } from './reducers/userReducers.js'
 import { orderCreateReducer } from './reducers/orderReducers.js'
+import { orderDetailsReducer } from './reducers/orderReducers.js'
 const reducer = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
@@ -13,7 +14,8 @@ const reducer = combineReducers({
     userRegister:userRegisterReducer,
     userDetails:userDetailsReducer,
     userUpdateProfile:userUpdateProfileReducer,
-    orderCreate:orderCreateReducer
+    orderCreate:orderCreateReducer,
+    orderDetails:orderDetailsReducer
 
 })
 // Add Initial data into store if found in exisiting in local storage.
