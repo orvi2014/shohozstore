@@ -10,7 +10,7 @@ const Product = (props) => {
                 <Card.Img src={props.product.image} variant='top'></Card.Img>
             </Link>
             <Card.Body>
-                <Link to={`/product/${props.product._id}`}>
+                <Link to={`/product/${props.product._id}`} style={{textDecoration:"none"}}>
                     <Card.Title as='div'><strong>{props.product.name}</strong></Card.Title>
                 </Link>
                 <Card.Text as='div'>
