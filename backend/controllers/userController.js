@@ -93,6 +93,13 @@ const getUserProfile = asyncHandler(async(req, res)=>{
 })
 
 
+
+// Get All Users  [Private Route / ADMIN ONLY]
+const getUsers = asyncHandler(async(req, res)=>{
+    const users = await User.find({})
+    res.json(users)
+})
+
 export {
-    authUser, getUserProfile, registerUser, updateUserProfile
+    authUser, getUserProfile, registerUser, updateUserProfile, getUsers
 }
