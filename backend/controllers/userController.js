@@ -3,6 +3,8 @@ import User from '../models/userModel.js';
 import generateToekn from '../utils/generateToken.js';
 
 //Login Auth
+//[POST / PUBLIC]
+//['/api/users/login']
 const authUser = asyncHandler(async(req, res)=>{
     const {email, password} = req.body
     const user = await User.findOne({ email })
@@ -21,7 +23,9 @@ const authUser = asyncHandler(async(req, res)=>{
     }
 })
 
-
+// @desc    Register a new user
+// @route   POST /api/users
+// @access  Public
 const registerUser = asyncHandler(async(req, res)=>{
     const {name, email, password} = req.body
     const userExists = await User.findOne({ email })
@@ -50,6 +54,7 @@ const registerUser = asyncHandler(async(req, res)=>{
 })
 
 // Update user profile  [Private Route]
+// @route   PUT /api/users/profile
 const updateUserProfile = asyncHandler(async(req, res)=>{
     const user = await User.findById(req.user._id)
 
@@ -76,6 +81,7 @@ const updateUserProfile = asyncHandler(async(req, res)=>{
 
 
 // Get user profile  [Private Route]
+// @route   GET /api/users/profile
 const getUserProfile = asyncHandler(async(req, res)=>{
     const user = await User.findById(req.user._id)
 
@@ -95,12 +101,14 @@ const getUserProfile = asyncHandler(async(req, res)=>{
 
 
 // Get All Users  [Private Route / ADMIN ONLY]
+// @route   GET /api/users
 const getUsers = asyncHandler(async(req, res)=>{
     const users = await User.find({})
     res.json(users)
 })
 
 // DELETE User [Private Route/ADMIN ONLY]
+// @route   DELETE /api/users/:id
 const deleteUser = asyncHandler(async(req, res)=>{
     const user = await User.findById(req.params.id)
     if(user){
@@ -113,6 +121,7 @@ const deleteUser = asyncHandler(async(req, res)=>{
 })
 
 // Get User By ID [PRIVATE / ADMIN ONLY]
+// @route   GET /api/users/:id/edit
 const getUserById = asyncHandler(async(req, res)=>{
     const user = await User.findById(req.params.id).select('-password')
     if(user){
@@ -126,6 +135,7 @@ const getUserById = asyncHandler(async(req, res)=>{
 
 
 // Update user profile  [Private Route/ ADMIN ONLY][PUT]
+// @route   PUT /api/users/:id
 const updateUser = asyncHandler(async(req, res)=>{
     const user = await User.findById(req.params.id)
 

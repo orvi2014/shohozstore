@@ -3,6 +3,9 @@ import Order from '../models/orderModel.js';
 
 
 //Create New Order [POST , PRIVATE]
+// @desc    Create new order
+// @route   POST /api/orders
+// @access  Private
 const addOrderItems = asyncHandler(async(req, res)=>{
     const {orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice} = req.body
     if(orderItems && orderItems.length === 0){
@@ -21,6 +24,9 @@ const addOrderItems = asyncHandler(async(req, res)=>{
 
 
 // GET Order by ID [PRIVATE , GET]
+// @desc    Get order by ID
+// @route   GET /api/orders/:id
+// @access  Private
 const getOrderByID = asyncHandler(async(req, res)=>{
     const order=await Order.findById(req.params.id).populate('user', 'name email')
 
@@ -33,7 +39,10 @@ const getOrderByID = asyncHandler(async(req, res)=>{
 })
 
 
-// Update Order to 'PAID' [PRIVATE , GET] [api/orders/:id/pay]
+// Update Order to 'PAID' 
+// @desc    Update order to paid
+// @route   GET /api/orders/:id/pay
+// @access  Private
 const updateOrderToPaid = asyncHandler(async(req, res)=>{
     const order=await Order.findById(req.params.id)
 
@@ -56,6 +65,9 @@ const updateOrderToPaid = asyncHandler(async(req, res)=>{
 
 
 // Get Logged In User Order [PRIVATE , GET] [api/orders/myorder]
+// @desc    Get logged in user orders
+// @route   GET /api/orders/myorders
+// @access  Private
 const getMyOrders = asyncHandler(async(req, res)=>{
     const orders=await Order.find({user:req.user._id})
     res.json(orders)
