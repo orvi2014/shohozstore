@@ -10,9 +10,10 @@ const router=express.Router()
 //Fetch All Products
 router.route('/').get(getProducts)
 
-//Fetch Individual Product
+//Fetch Individual Product, Delete Product (Admin), Update Product  (Admin)
 router.route('/:id').get(getProductById).delete(protect, admin, deleteProduct ).put(protect, admin, updateProduct)
 
+//Create Product (Admin)
 router.route('/create').post(protect, admin, createProduct)
 
 
