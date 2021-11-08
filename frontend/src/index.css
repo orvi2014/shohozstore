@@ -21,3 +21,43 @@ h3 {
   margin: 0.1rem;
   font-size: 0.9em;
 }
+/* carousel */
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+}
+.carousel-caption {
+  position: absolute;
+  top: 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.carousel-caption h3 {
+  color: #fff;
+}
+
+.carousel-caption p {
+  color: white;
+  margin-top: 53%;
+}
+
+.carousel img {
+  height: auto;
+  width: 100%;
+  padding: 40px;
+  margin: 40px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+.carousel a {
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .carousel-caption h2 {
+    font-size: 2.5vw;
+  }
+}
