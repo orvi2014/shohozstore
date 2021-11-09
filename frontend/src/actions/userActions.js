@@ -10,7 +10,9 @@ import { USER_LOGIN_FAIL,
     USER_DETAILS_FAIL, 
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS,
-    USER_UPDATE_PROFILE_FAIL, USER_DETAILS_RESET, USER_LIST_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST, USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DELETE_FAIL, USER_UPDATE_REQUEST, USER_UPDATE_FAIL, USER_UPDATE_SUCCESS, } from "../constants/userConstants.js"
+    USER_UPDATE_PROFILE_FAIL, USER_DETAILS_RESET, USER_LIST_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST,
+     USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DELETE_FAIL, USER_UPDATE_REQUEST, 
+     USER_UPDATE_FAIL, USER_UPDATE_SUCCESS, } from "../constants/userConstants.js"
 import axios from 'axios'
 import { ORDER_LIST_MY_RESET } from "../constants/orderConstants.js"
 
@@ -157,6 +159,12 @@ export const updateUserProfile = (user)=> async(dispatch, getState )=>{
             payload:data
         })
         
+        dispatch({
+            type:USER_LOGIN_SUCCESS,
+            payload:data
+        })
+
+        localStorage.setItem('userInfo', JSON.stringify(data))
 
         
     }catch(error){

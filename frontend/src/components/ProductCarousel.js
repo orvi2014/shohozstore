@@ -1,5 +1,5 @@
 import React from 'react'
-import {Carousel, Image, Button} from 'react-bootstrap'
+import {Carousel, Image} from 'react-bootstrap'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Loader from './Loader'
@@ -16,20 +16,22 @@ const ProductCarousel = () => {
         dispatch(listTopProducts())
     }, [dispatch])
     return loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
-        <Carousel pause='hover' className='bg-dark'>
+        <Carousel pause='hover' className='bg-dark' indicators={false}>
+            
             {products.map(product => (
-                <Carousel.Item key={product._id}>
+                <Carousel.Item key={product._id} >
+                    
                     <Link to={`/product/${product._id}`}>
                         <Image
-                            className="d-block w-100"
-                            src="/images/iphone_carousel.jpg"
+                            className="d-block w-100 h-100"
+                            src={product.carousel_image}
                             alt={product.name}
                             fluid
                         />
                         <Carousel.Caption className='carousel-caption'>
                             <h3>{product.name}</h3>
 
-                            <p>{product.description} </p>
+                       
 
                             <p></p>
                         </Carousel.Caption>
