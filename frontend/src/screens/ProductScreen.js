@@ -97,16 +97,6 @@ const ProductScreen = (props) => {
                                 </Row>
                             </ListGroup.Item>
 
-                            {/* <ListGroup.Item>
-                                <Row>
-                                    <Col>No Of Units Available:</Col>
-                                    <Col>
-                                        <strong className={product.countInStock >0 ? 'text-primary' : 'text-danger'}>
-                                            {product.countInStock}
-                                        </strong>
-                                    </Col>
-                                </Row>
-                            </ListGroup.Item> */}
                             {product.countInStock>0 && (
                                 <ListGroup.Item>
                                     <Row>
@@ -131,7 +121,49 @@ const ProductScreen = (props) => {
         
             <Row>
                 <Col md={6}>
-                    <h3>Customer Reviews</h3>
+                    <h3>Reviews</h3>
+                    {product.reviews.length === 0 && <Message>No Reviews</Message>}
+                    <ListGroup>
+                        {product.reviews.map(review=>(
+                            <ListGroup.Item key={review._id}>
+                                <Row>
+                                    <Col>
+                                        <h5 style={{fontWeight:"bold"}}>{review.name}</h5>
+                                        <Rating value={review.rating} text={`${review.rating} stars`}/>
+                                        <p>{review.createdAt.substring(0,10)}</p>
+                                    </Col>
+                                </Row>
+                                <p style={{fontStyle:"italic"}}>{review.comment}</p>
+                            </ListGroup.Item>
+                        ))}
+                        <ListGroupItem>
+                            <h2>Write Customer Review</h2>
+                            {errorProductReview && <Message variant='danger'>{errorProductReview}</Message>}
+                            {userInfo ? (<Form onSubmit={submitHandler}>
+                                <Form.Group controlId='rating'>
+                                    <Form.Label>Rating</Form.Label>
+                                    <Form.Control className="form-select" as="select" value={rating} onChange={(e)=>setRating(e.target.value)}>
+                                        <option value=''>Select ...</option>
+                                        <option value='1'>1 - Poor</option>
+                                        <option value='2'>2 - Fair</option>
+                                        <option value='3'>3 - Good</option>
+                                        <option value='4'>4 - Very Good</option>
+                                        <option value='5'>5 - Excellent</option>
+                                    </Form.Control>
+                                </Form.Group>
+                                <Form.Group controlId='comment'>
+                                    <Form.Label>Comment</Form.Label>
+                                    <Form.Control as="textarea" row='3' value={comment} onChange={(e)=>setComment(e.target.value)}/>
+                                </Form.Group>
+                                <Button type="submit" variant="primary">Submit</Button>
+                            </Form>) : <Message>You need to <Link to='login'>login</Link> to write a review</Message>}
+                        </ListGroupItem>
+                    </ListGroup>
+                    
+                </Col>
+
+                <Col md={6}>
+                    <h3>Overall Rating</h3>
                     <ListGroupItem>
                     <Rating value={product.rating} text={`Based on ${product.numReviews} reviews `}/>
                     <p></p>
@@ -204,47 +236,6 @@ const ProductScreen = (props) => {
                      </ListGroupItem>   
 
         
-                    
-                </Col>
-                <Col md={6}>
-                    {/* <h3>Reviews</h3> */}
-                    {product.reviews.length === 0 && <Message>No Reviews</Message>}
-                    <ListGroup>
-                        {product.reviews.map(review=>(
-                            <ListGroup.Item key={review._id}>
-                                <Row>
-                                    <Col>
-                                        <h5 style={{fontWeight:"bold"}}>{review.name}</h5>
-                                        <Rating value={review.rating} text={`${review.rating} stars`}/>
-                                        <p>{review.createdAt.substring(0,10)}</p>
-                                    </Col>
-                                </Row>
-                                <p style={{fontStyle:"italic"}}>{review.comment}</p>
-                            </ListGroup.Item>
-                        ))}
-                        <ListGroupItem>
-                            <h2>Write Customer Review</h2>
-                            {errorProductReview && <Message variant='danger'>{errorProductReview}</Message>}
-                            {userInfo ? (<Form onSubmit={submitHandler}>
-                                <Form.Group controlId='rating'>
-                                    <Form.Label>Rating</Form.Label>
-                                    <Form.Control className="form-select" as="select" value={rating} onChange={(e)=>setRating(e.target.value)}>
-                                        <option value=''>Select ...</option>
-                                        <option value='1'>1 - Poor</option>
-                                        <option value='2'>2 - Fair</option>
-                                        <option value='3'>3 - Good</option>
-                                        <option value='4'>4 - Very Good</option>
-                                        <option value='5'>5 - Excellent</option>
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group controlId='comment'>
-                                    <Form.Label>Comment</Form.Label>
-                                    <Form.Control as="textarea" row='3' value={comment} onChange={(e)=>setComment(e.target.value)}/>
-                                </Form.Group>
-                                <Button type="submit" variant="primary">Submit</Button>
-                            </Form>) : <Message>You need to <Link to='login'>login</Link> to write a review</Message>}
-                        </ListGroupItem>
-                    </ListGroup>
                     
                 </Col>
             </Row>
