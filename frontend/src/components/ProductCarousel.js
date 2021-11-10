@@ -30,9 +30,6 @@ const ProductCarousel = () => {
                         />
                         <Carousel.Caption className='carousel-caption'>
                             <h3>{product.name}</h3>
-
-                       
-
                             <p></p>
                         </Carousel.Caption>
                     </Link>

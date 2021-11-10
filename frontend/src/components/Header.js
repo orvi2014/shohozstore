@@ -17,7 +17,7 @@ const Header = () => {
     const {userInfo} = userLogin
     const navigation = [
   { name: 'Home', href: '/', current: true },
-  { name: 'Categories', href: '#', current: false },
+  { name: 'About Us', href: '#', current: false },
   { name: 'Cart', href: '/cart', current: false },
   { name: 'Login', href: '/login', current: false },
 ]
@@ -51,12 +51,17 @@ function classNames(...classes) {
                   <img
                     className="block lg:hidden h-8 w-auto"
                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                    alt="Workflow"
+                    alt="XZEN"
                   />
                   <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                    alt="Workflow"
+                    className="hidden lg:block h-8 w-8"
+                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    alt="XZEN"
+                  />
+                  <img
+                    className="hidden lg:block h-10 w-14"
+                    src="\images\XZEN.png"
+                    alt="XZEN"
                   />
                 </div>
                 <div className="hidden sm:block sm:ml-6">

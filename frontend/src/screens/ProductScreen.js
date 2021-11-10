@@ -20,6 +20,7 @@ const ProductScreen = (props) => {
 
     const productDetails = useSelector(state=> state.productDetails)
     const {loading, error, product} = productDetails
+    
 
     const productReviewCreate = useSelector(state=> state.productReviewCreate)
     const {error:errorProductReview, success:successProductReview} = productReviewCreate
@@ -27,6 +28,13 @@ const ProductScreen = (props) => {
     const userLogin = useSelector(state=> state.userLogin)
     const {userInfo} = userLogin
 
+    var review5 =product.reviews.filter(review=> review.rating===5).length*100/product.reviews.length+"%"
+    var review4 =product.reviews.filter(review=> review.rating===4).length*100/product.reviews.length+"%"
+    var review3 =product.reviews.filter(review=> review.rating===3).length*100/product.reviews.length+"%"
+    var review2 =product.reviews.filter(review=> review.rating===2).length*100/product.reviews.length+"%"
+    var review1 =product.reviews.filter(review=> review.rating===1).length*100/product.reviews.length+"%"
+    console.log(review5,review4,review3,review2,review1)
+    
     useEffect(()=>{
         if(successProductReview){
             alert("Review Submitted!")
@@ -37,7 +45,7 @@ const ProductScreen = (props) => {
         dispatch(listProductDetails(props.match.params.id))
         
     },[dispatch,props.match, successProductReview])
-
+    
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(createProductReview(props.match.params.id, {rating:rating, comment:comment}))
@@ -49,7 +57,6 @@ const ProductScreen = (props) => {
     
     return (
         <>
-
             <Link className="btn btn-outline-dark my-3" to="/">Go Back</Link>
             {loading ? <Loader/> : error ? <Message variant='danger'>{error} </Message> : (<>
             <Meta title={product.name} description={product.description}/>
@@ -179,8 +186,8 @@ const ProductScreen = (props) => {
                                         5 <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
                                     </div>
                                     <div className="col-8">
-                                        <div className="progress" style={{height:"5px"}}>
-                                        <div className="progress-bar" role="progressbar" style={{width: "75%", color:"rgb(248, 232, 37)"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div className="progress" style={{height:"15px"}}>
+                                        <div className="progress-bar" role="progressbar" style={{width:review5}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{review5}</div>
                                         
                                         </div>
                                     </div>
@@ -191,8 +198,8 @@ const ProductScreen = (props) => {
                                         4 <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
                                     </div>
                                     <div className="col-8">
-                                        <div className="progress" style={{height:"5px"}}>
-                                        <div className="progress-bar" role="progressbar" style={{width: "75%"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div className="progress" style={{height:"15px"}}>
+                                        <div className="progress-bar" role="progressbar" style={{width: review4}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{review4}</div>
                                         </div>
                                     </div>
                                 </div>  
@@ -202,8 +209,8 @@ const ProductScreen = (props) => {
                                         3 <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
                                     </div>
                                     <div className="col-8">
-                                        <div className="progress" style={{height:"5px"}}>
-                                        <div className="progress-bar" role="progressbar" style={{width: "75%"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div className="progress" style={{height:"15px"}}>
+                                        <div className="progress-bar" role="progressbar" style={{width: review3}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{review3}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -213,8 +220,8 @@ const ProductScreen = (props) => {
                                         2 <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
                                     </div>
                                     <div className="col-8">
-                                        <div className="progress" style={{height:"5px"}}>
-                                        <div className="progress-bar" role="progressbar" style={{width: "75%"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div className="progress" style={{height:"15px"}}>
+                                        <div className="progress-bar" role="progressbar" style={{width: review2}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{review2}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -224,9 +231,10 @@ const ProductScreen = (props) => {
                                         1 <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
                                     </div>
                                     <div className="col-8">
-                                        <div className="progress" style={{height:"5px"}}>
-                                        <div className="progress-bar" role="progressbar" style={{width: "75%"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div className="progress" style={{height:"15px"}}>
+                                        <div className="progress-bar" role="progressbar" style={{width: review1}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{review1}</div>
                                         </div>
+                                        
                                     </div>
                                 </div>    
                 
