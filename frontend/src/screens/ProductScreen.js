@@ -165,8 +165,7 @@ const ProductScreen = (props) => {
                                 <Button type="submit" variant="primary">Submit</Button>
                             </Form>) : <Message>You need to <Link to='login'>login</Link> to write a review</Message>}
                         </ListGroupItem>
-                    </ListGroup>
-                    
+                    </ListGroup> 
                 </Col>
 
                 <Col md={6}>
