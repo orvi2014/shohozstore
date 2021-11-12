@@ -1,13 +1,13 @@
 import React from 'react'
-import {NavLink, Route} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Nav, NavDropdown } from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import { logout } from '../actions/userActions';
 import SearchBox from './SearchBox'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon, ShoppingBagIcon } from '@heroicons/react/outline'
+import {MenuIcon, XIcon, ShoppingBagIcon } from '@heroicons/react/outline'
 
 
 
