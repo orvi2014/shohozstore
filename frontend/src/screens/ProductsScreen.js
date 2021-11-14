@@ -6,9 +6,8 @@ import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import Meta from '../components/Meta';
 import Message from '../components/Message';
-import ProductCarousel from '../components/ProductCarousel';
 import Rating from '../components/Rating';
-import CTASection from '../components/CTASection';
+import ProductScreenCategory from '../components/ProductScreenCategory';
 import Categories from '../components/Categories';
 
 
@@ -31,12 +30,12 @@ const ProductsScreen = ({match}) => {
     return (
         <>
         <Meta title='Home' />
-
             {loading ? <Loader>Loading...</Loader> : error ? <Message variant='danger'>{error}</Message> : 
             <div className="bg-white">
-                    <div className="max-w-2xl mx-auto py-16 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
-                        <Link className="btn btn-outline-dark my-3" to="/">Go Back</Link>
-                        {!keyword && <Categories/>}
+                    <div className="max-w-2xl mx-auto py-10 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
+                        { category && <ProductScreenCategory category={category} /> }
+                        
+
                         <h2 id="products"className="text-2xl font-extrabold tracking-tight text-gray-900">Latest Products</h2>
                         <div className="mt-1 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         {products.map((product) => (

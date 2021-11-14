@@ -36,9 +36,8 @@ const getProductById = asyncHandler(async(req, res)=>{
     }
 })
 
-//Fetch Individual Product
-// @desc    Fetch single product
-// @route   GET /api/products/:id
+// @desc    Fetch Products Based On Category
+// @route   GET /api/products/category/:category
 // @access  Public
 const getProductByCategory = asyncHandler(async(req, res)=>{
     const products=await Product.find({category: req.params.category})

@@ -15,6 +15,7 @@ import Categories from '../components/Categories';
 const HomeScreen = ({match}) => {
     const keyword = match.params.keyword;
     const pageNumber = match.params.pageNumber || 1;
+    const category = match.params.category;
     const dispatch = useDispatch()
     const productList=useSelector(state => state.productList)
     const { loading, error, products, page, pages } = productList
@@ -35,7 +36,10 @@ const HomeScreen = ({match}) => {
             <div className="bg-white">
                     <div className="max-w-2xl mx-auto py-16 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
                         {!keyword && <CTASection/>}
-                        {!keyword && <Categories/>}
+                        <div id="collections">
+                            {!keyword && <Categories/>}
+                        </div>
+                        
                         {/* <h2 id="products"className="text-2xl font-extrabold tracking-tight text-gray-900">Latest Products</h2>
                         <div className="mt-1 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         {products.map((product) => (
