@@ -36,6 +36,21 @@ const getProductById = asyncHandler(async(req, res)=>{
     }
 })
 
+//Fetch Individual Product
+// @desc    Fetch single product
+// @route   GET /api/products/:id
+// @access  Public
+const getProductByCategory = asyncHandler(async(req, res)=>{
+    const products=await Product.find({category: req.params.category})
+    if (products){
+        res.json(products);
+    }
+    else{
+        res.status(404)
+        throw new Error('Product Not Found')
+    }
+})
+
 
 
 // @desc    Delete Single Product
@@ -150,5 +165,6 @@ export {
     updateProduct,
     createProduct,
     createProductReview,
-    getTopProducts
+    getTopProducts,
+    getProductByCategory
 }
