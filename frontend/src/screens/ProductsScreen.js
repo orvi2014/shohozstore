@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { listProducts } from '../actions/productActions';
+import { listProductCategory} from '../actions/productActions';
 import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import Meta from '../components/Meta';
@@ -12,31 +12,32 @@ import CTASection from '../components/CTASection';
 import Categories from '../components/Categories';
 
 
-const HomeScreen = ({match}) => {
+const ProductsScreen = ({match}) => {
     const keyword = match.params.keyword;
     const pageNumber = match.params.pageNumber || 1;
+    const category = match.params.category;
+    console.log(category);
     const dispatch = useDispatch()
-    const productList=useSelector(state => state.productList)
-    const { loading, error, products, page, pages } = productList
+    const productCategory=useSelector(state => state.productCategory)
+    const { loading, error, products } = productCategory
+    console.log(products);
 
     useEffect(()=>{
-        dispatch(listProducts(keyword, pageNumber));
+        dispatch(listProductCategory(category));
 
-    },[dispatch, keyword, pageNumber])
+    },[dispatch, category])
 
     
     return (
         <>
         <Meta title='Home' />
-           
-            {!keyword ? <ProductCarousel/> :<Link to='/' className='btn btn-outline-primary mb-3'>Back to Home</Link>}
-    
+
             {loading ? <Loader>Loading...</Loader> : error ? <Message variant='danger'>{error}</Message> : 
             <div className="bg-white">
                     <div className="max-w-2xl mx-auto py-16 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
-                        {!keyword && <CTASection/>}
+                        <Link className="btn btn-outline-dark my-3" to="/">Go Back</Link>
                         {!keyword && <Categories/>}
-                        {/* <h2 id="products"className="text-2xl font-extrabold tracking-tight text-gray-900">Latest Products</h2>
+                        <h2 id="products"className="text-2xl font-extrabold tracking-tight text-gray-900">Latest Products</h2>
                         <div className="mt-1 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         {products.map((product) => (
                             <div key={product.id} className="group relative">
@@ -59,10 +60,10 @@ const HomeScreen = ({match}) => {
                                 <Rating value={product.rating} text={product.numReviews} className="mt-1 text-sm text-gray-500"/>
                                 </div>
                                 {/* <p className="text-sm font-medium text-gray-900">{product.price}</p> */}
-                            {/* </div>
-                            </div> */}
-                        {/* ))} */}
-                        {/* </div> */} 
+                            </div>
+                            </div>
+                        ))}
+                        </div>
                     </div>
                 </div>
             // <Row >
@@ -80,4 +81,4 @@ const HomeScreen = ({match}) => {
     )
 }
 
-export default HomeScreen
+export default ProductsScreen;
