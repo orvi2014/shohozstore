@@ -27,7 +27,7 @@ const callouts = [
 ]
 const Categories = () => {
     return (
-        <div >
+    <div >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto py-5 sm:py-24 lg:py-32 lg:max-w-none">
           <h2 className="text-2xl font-extrabold text-gray-900">Collections</h2>
@@ -43,10 +43,10 @@ const Categories = () => {
                   />
                 </div>
                 <h3 className="mt-6 text-sm text-gray-900">
-                  <Link to={`/products/${callout.name}`} className="no-underline">
+                  <a href={`/products/category/${callout.name}`} className="no-underline">
                     <span className="absolute inset-0" />
                     {callout.name}
-                  </Link>
+                  </a>
                 </h3>
                 <p className="text-base font-semibold text-gray-900">{callout.description}</p>
               </div>

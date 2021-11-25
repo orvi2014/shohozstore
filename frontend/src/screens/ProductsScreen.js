@@ -6,10 +6,9 @@ import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import Meta from '../components/Meta';
 import Message from '../components/Message';
-import ProductCarousel from '../components/ProductCarousel';
 import Rating from '../components/Rating';
-import CTASection from '../components/CTASection';
-import Categories from '../components/Categories';
+import ProductScreenCategory from '../components/ProductScreenCategory';
+import { listProducts } from '../actions/productActions';
 
 
 const ProductsScreen = ({match}) => {
@@ -17,26 +16,31 @@ const ProductsScreen = ({match}) => {
     const pageNumber = match.params.pageNumber || 1;
     const category = match.params.category;
     console.log(category);
+
     const dispatch = useDispatch()
     const productCategory=useSelector(state => state.productCategory)
     const { loading, error, products } = productCategory
+
+    const productList=useSelector(state => state.productList)
+    const { page, pages } = productList
     console.log(products);
 
     useEffect(()=>{
         dispatch(listProductCategory(category));
+        dispatch(listProducts(keyword, pageNumber));
 
-    },[dispatch, category])
+    },[dispatch, category, keyword, pageNumber])
 
     
     return (
         <>
         <Meta title='Home' />
-
             {loading ? <Loader>Loading...</Loader> : error ? <Message variant='danger'>{error}</Message> : 
             <div className="bg-white">
-                    <div className="max-w-2xl mx-auto py-16 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
-                        <Link className="btn btn-outline-dark my-3" to="/">Go Back</Link>
-                        {!keyword && <Categories/>}
+                    <div className="max-w-2xl mx-auto py-10 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
+                        { category && <ProductScreenCategory category={category} /> }
+                        
+
                         <h2 id="products"className="text-2xl font-extrabold tracking-tight text-gray-900">Latest Products</h2>
                         <div className="mt-1 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         {products.map((product) => (
@@ -75,7 +79,7 @@ const ProductsScreen = ({match}) => {
             // </Row>
         }
             
-             {/* <Paginate page={page} pages={pages} pageNumber={pageNumber} keyword={keyword ? keyword : ''}></Paginate>    */}
+             <Paginate page={page} pages={pages} pageNumber={pageNumber} keyword={keyword ? keyword : ''}></Paginate>   
             
         </>
     )

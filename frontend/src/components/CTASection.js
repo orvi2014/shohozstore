@@ -12,13 +12,12 @@ const CTASection = () => {
                   <span class="block xl:inline">Ready To Dive ?</span>
                   <span class="block text-indigo-600 xl:inline">We have what you need!</span>
                 </h1>
-                <p class="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">It's never been easier to build beautiful websites that convey your message and tell your story.</p>
+                <p class="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">It's never been easier to purchase what you want. Click on the button below to begin.</p>
                 <div class="relative flex flex-col sm:flex-row sm:space-x-4">
-                  <a href="#products" class="no-underline flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-indigo-600 sm:mb-0 hover:bg-indigo-700 sm:w-auto rounded-md">
-                    Try It Free
+                  <a href="#collections" class="no-underline flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-indigo-600 sm:mb-0 hover:bg-indigo-700 sm:w-auto rounded-md">
+                    Get Started
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                   </a>
-                  
                 </div>
               </div>
             </div>
