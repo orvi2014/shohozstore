@@ -22,8 +22,8 @@ const ProductsScreen = ({match}) => {
     const { loading, error, products } = productCategory
 
     const productList=useSelector(state => state.productList)
-    const { page, pages } = productList
-    console.log(products);
+    const { page, pages, products:keyProd } = productList
+    console.log(keyProd);
 
     useEffect(()=>{
         dispatch(listProductCategory(category));
@@ -41,10 +41,34 @@ const ProductsScreen = ({match}) => {
                         { category && <ProductScreenCategory category={category} /> }
                         
 
-                        <h2 id="products"className="text-2xl font-extrabold tracking-tight text-gray-900">Latest Products</h2>
+                        <h2 id="products"className="text-2xl font-extrabold tracking-tight text-gray-900">{category}</h2>
                         <div className="mt-1 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        {products.map((product) => (
-                            <div key={product.id} className="group relative">
+                        {!keyword && products.map((product) => (
+                            <div key={product._id} className="group relative">
+                            <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                                <img
+                                src={product.image}
+                                alt={product.name}
+                                className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                                />
+                            </div>
+                            <div className="mt-4 flex justify-between">
+                                <div>
+                                <h3 className="text-sm text-gray-700">
+                                    <Link to={`/product/${product._id}`} style={{textDecoration:"none"}}>
+                                    <span aria-hidden="true" className="absolute inset-0" />
+                                    {product.name}
+                                    </Link>
+                                </h3>
+                                <p className="mt-1 text-sm text-gray-500">${product.price}</p>
+                                <Rating value={product.rating} text={product.numReviews} className="mt-1 text-sm text-gray-500"/>
+                                </div>
+                                {/* <p className="text-sm font-medium text-gray-900">{product.price}</p> */}
+                            </div>
+                            </div>
+                        ))}
+                        {keyword && keyProd.map((product) => (
+                            <div key={product._id} className="group relative">
                             <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                                 <img
                                 src={product.image}
@@ -79,7 +103,7 @@ const ProductsScreen = ({match}) => {
             // </Row>
         }
             
-             <Paginate page={page} pages={pages} pageNumber={pageNumber} keyword={keyword ? keyword : ''}></Paginate>   
+             {/* <Paginate page={page} pages={pages} pageNumber={pageNumber} keyword={keyword ? keyword : ''}></Paginate>    */}
             
         </>
     )
