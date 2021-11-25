@@ -48,6 +48,7 @@ function classNames(...classes) {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
+                  <a href="/" className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
@@ -63,6 +64,7 @@ function classNames(...classes) {
                     src="\images\XZEN.png"
                     alt="XZEN"
                   />
+                  </a>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
@@ -142,17 +144,27 @@ function classNames(...classes) {
                                 </LinkContainer></>
 
                          : 
-                             <LinkContainer to="/login">
-                                <Menu.Item>
-                                    {({ active }) => (
-                                        <Nav.Link
-                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 no-underline')}
-                                        >
-                                            Login
-                                        </Nav.Link>
-                                    )}
-                                </Menu.Item>
-                            </LinkContainer>
+                             <><LinkContainer to="/login">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Nav.Link
+                                  className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 no-underline')}
+                                >
+                                  Login
+                                </Nav.Link>
+                              )}
+                            </Menu.Item>
+                          </LinkContainer><LinkContainer to="/register">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <Nav.Link
+                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 no-underline')}
+                                  >
+                                    Register
+                                  </Nav.Link>
+                                )}
+                              </Menu.Item>
+                            </LinkContainer></>
                             }
                           
                     {userInfo  && userInfo.isAdmin && (

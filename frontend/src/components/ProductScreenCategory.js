@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 
 
 const ProductScreenCategory = (props) => {
-    console.log("props",props)
     return (
         <>
     

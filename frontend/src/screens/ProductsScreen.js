@@ -8,7 +8,7 @@ import Meta from '../components/Meta';
 import Message from '../components/Message';
 import Rating from '../components/Rating';
 import ProductScreenCategory from '../components/ProductScreenCategory';
-import Categories from '../components/Categories';
+import { listProducts } from '../actions/productActions';
 
 
 const ProductsScreen = ({match}) => {
@@ -16,15 +16,20 @@ const ProductsScreen = ({match}) => {
     const pageNumber = match.params.pageNumber || 1;
     const category = match.params.category;
     console.log(category);
+
     const dispatch = useDispatch()
     const productCategory=useSelector(state => state.productCategory)
     const { loading, error, products } = productCategory
+
+    const productList=useSelector(state => state.productList)
+    const { page, pages } = productList
     console.log(products);
 
     useEffect(()=>{
         dispatch(listProductCategory(category));
+        dispatch(listProducts(keyword, pageNumber));
 
-    },[dispatch, category])
+    },[dispatch, category, keyword, pageNumber])
 
     
     return (
@@ -74,7 +79,7 @@ const ProductsScreen = ({match}) => {
             // </Row>
         }
             
-             {/* <Paginate page={page} pages={pages} pageNumber={pageNumber} keyword={keyword ? keyword : ''}></Paginate>    */}
+             <Paginate page={page} pages={pages} pageNumber={pageNumber} keyword={keyword ? keyword : ''}></Paginate>   
             
         </>
     )

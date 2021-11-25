@@ -16,7 +16,7 @@ const ProductCarousel = () => {
         dispatch(listTopProducts())
     }, [dispatch])
     return loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
-        <Carousel pause='hover' className='bg-dark' indicators={false}>
+        <Carousel pause='hover' className='bg-dark lg:block hidden' indicators={false}>
             
             {products.map(product => (
                 <Carousel.Item key={product._id} >
