@@ -1,11 +1,10 @@
 import React from 'react'
-import {Spinner} from 'react-bootstrap'
 
 const Loader = () => {
     return (
-        <Spinner animation="grow" role='status' style={{width:'100px', height:'100px', margin:'auto', display:'block'}}>
-            <span className="sr-only">Loading...</span>
-        </Spinner>
+        <div class="flex items-center justify-center ">
+            <div class="w-40 h-40 border-t-4 border-b-4 border-green-900 rounded-full animate-spin"></div>
+        </div>
     )
 }
 

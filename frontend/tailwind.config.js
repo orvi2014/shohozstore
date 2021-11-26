@@ -6,7 +6,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      scale:['focus-within']
+      scale:['focus-within'],
+      padding: ['responsive', 'last', 'first', 'hover', 'focus', 'active', 'group-hover'],
     },
   },
   plugins: [require('@tailwindcss/aspect-ratio'),],

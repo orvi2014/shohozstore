@@ -207,6 +207,7 @@ const ProductEditScreen = ({ match, history }) => {
             <Form.Group controlId='Description' className='mt-3'>
               <Form.Label>Description</Form.Label>
               <Form.Control
+                as="textarea"
                 type='text'
                 placeholder='Enter Description'
                 value={description}
