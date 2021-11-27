@@ -50,7 +50,26 @@ const getProductByCategory = asyncHandler(async(req, res)=>{
     }
 })
 
-
+// @desc    Fetch Products Based On Header Category
+// @route   GET /api/products/header/:hcategory
+// @access  Public
+const getProductHeader = asyncHandler(async(req, res)=>{
+    const keyword = {
+        description:{
+            $regex:req.params.hcategory
+        }
+        
+    }
+    const products = await Product.find({...keyword})
+    if(products){
+        res.json(products);
+    }
+    else{
+        res.status(404)
+        throw new Error('Products Not Found')
+    }
+})
+    
 
 // @desc    Delete Single Product
 // @route   DELETE /api/products/:id
@@ -165,5 +184,6 @@ export {
     createProduct,
     createProductReview,
     getTopProducts,
-    getProductByCategory
+    getProductByCategory,
+    getProductHeader
 }

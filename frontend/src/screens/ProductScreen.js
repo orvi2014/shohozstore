@@ -27,13 +27,18 @@ const ProductScreen = (props) => {
 
     const userLogin = useSelector(state=> state.userLogin)
     const {userInfo} = userLogin
-
-    var review5 =product.reviews.filter(review=> review.rating===5).length*100/product.reviews.length+"%"
-    var review4 =product.reviews.filter(review=> review.rating===4).length*100/product.reviews.length+"%"
-    var review3 =product.reviews.filter(review=> review.rating===3).length*100/product.reviews.length+"%"
-    var review2 =product.reviews.filter(review=> review.rating===2).length*100/product.reviews.length+"%"
-    var review1 =product.reviews.filter(review=> review.rating===1).length*100/product.reviews.length+"%"
-    console.log(review5,review4,review3,review2,review1)
+    var reviews = [product.reviews.filter(review=> review.rating===5).length*100/product.reviews.length+'%',
+        product.reviews.filter(review=> review.rating===4).length*100/product.reviews.length+'%', 
+        product.reviews.filter(review=> review.rating===3).length*100/product.reviews.length+'%', 
+        product.reviews.filter(review=> review.rating===2).length*100/product.reviews.length+'%', 
+        product.reviews.filter(review=> review.rating===1).length*100/product.reviews.length+'%'
+    ]
+    // var review5 =product.reviews.filter(review=> review.rating===5).length*100/product.reviews.length+"%"
+    // var review4 =product.reviews.filter(review=> review.rating===4).length*100/product.reviews.length+"%"
+    // var review3 =product.reviews.filter(review=> review.rating===3).length*100/product.reviews.length+"%"
+    // var review2 =product.reviews.filter(review=> review.rating===2).length*100/product.reviews.length+"%"
+    // var review1 =product.reviews.filter(review=> review.rating===1).length*100/product.reviews.length+"%"
+    
     
     useEffect(()=>{
         if(successProductReview){
@@ -180,76 +185,31 @@ const ProductScreen = (props) => {
                                 <p className="text-black-50">out of 5</p>
                             </div>
                             <div className="flex-grow-1">
-                                <div className="row align-items-center">
+                                {reviews.map((review, index)=>(
+                                    <div className="row align-items-center">
                                     <div className="col-2 text-right">
-                                        5 <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
+                                        {reviews.length-index} <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
                                     </div>
                                     <div className="col-8">
                                         <div className="progress" style={{height:"15px"}}>
-                                        <div className="progress-bar" role="progressbar" style={{width:review5}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{review5}</div>
-                                        
+                                        {review == 'NaN%' ? 
+                                        <div className="progress-bar" role="progressbar" style={{width:'100%'}} aria-valuenow="75" 
+                                        aria-valuemin="0" aria-valuemax="100">0%</div>
+                                        :<div className="progress-bar" role="progressbar" style={{width:review}} aria-valuenow="75" 
+                                        aria-valuemin="0" aria-valuemax="100">{review}</div>
+                                        }
                                         </div>
                                     </div>
-                                </div> 
+                                    </div> ))
+                                    }
 
-                                <div className="row align-items-center">
-                                    <div className="col-2 text-right">
-                                        4 <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
-                                    </div>
-                                    <div className="col-8">
-                                        <div className="progress" style={{height:"15px"}}>
-                                        <div className="progress-bar" role="progressbar" style={{width: review4}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{review4}</div>
-                                        </div>
-                                    </div>
-                                </div>  
-
-                                <div className="row align-items-center">
-                                    <div className="col-2 text-right">
-                                        3 <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
-                                    </div>
-                                    <div className="col-8">
-                                        <div className="progress" style={{height:"15px"}}>
-                                        <div className="progress-bar" role="progressbar" style={{width: review3}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{review3}</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="row align-items-center">
-                                    <div className="col-2 text-right">
-                                        2 <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
-                                    </div>
-                                    <div className="col-8">
-                                        <div className="progress" style={{height:"15px"}}>
-                                        <div className="progress-bar" role="progressbar" style={{width: review2}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{review2}</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="row align-items-center">
-                                    <div className="col-2 text-right">
-                                        1 <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
-                                    </div>
-                                    <div className="col-8">
-                                        <div className="progress" style={{height:"15px"}}>
-                                        <div className="progress-bar" role="progressbar" style={{width: review1}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{review1}</div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>    
-                
                             </div>
-                            
                         </div>
                      </ListGroupItem>   
-
-        
-                    
                 </Col>
             </Row>
             </>
-
-            )}
-            
+            )}  
         </>
     )
 }

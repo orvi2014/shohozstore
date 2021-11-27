@@ -39,6 +39,7 @@ const App=()=> {
         <Route path='/register' component={RegisterScreen}></Route>
         <Route path='/product/:id' component={ProductScreen}></Route>
         <Route path='/products/category/:category' component={ProductsScreen}></Route>
+        <Route path='/products/header/:hcategory' component={ProductsScreen} exact></Route>
         <Route path='/cart/:id?' component={CartScreen}></Route>
         <Route path='/admin/userlist' component={UserListScreen}></Route>
         <Route path='/admin/user/:id/edit' component={UserEditScreen}></Route>

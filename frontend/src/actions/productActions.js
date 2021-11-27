@@ -67,10 +67,16 @@ export const listProductDetails = (id)=> async (dispatch)=>{
 export const listProductCategory = (category)=> async (dispatch)=>{
     try{
         dispatch({type: PRODUCT_CATEGORY_REQUEST})
+        if(category == 'Electronics' || category == 'Clothing' || category == 'Shoes' || category == 'Accessories' || category == 'Watches' || category == 'Perfumes'){
+            const {data} = await axios.get(`/api/products/category/${category}`)
+            dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data,})
+        }
+        else{
+            const {data} = await axios.get(`/api/products/header/${category}`)
+            dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data,})
+        }
 
-        const {data} = await axios.get(`/api/products/category/${category}`)
-
-        dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data,})
+        
 
     }
     catch(error){
