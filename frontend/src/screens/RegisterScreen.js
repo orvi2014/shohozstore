@@ -6,6 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { register } from '../actions/userActions'
+import Meta from '../components/Meta'
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('')
@@ -38,14 +39,14 @@ const RegisterScreen = ({ location, history }) => {
   }
 
   return (
-    <FormContainer>
+    <><Meta title='Register' /><FormContainer>
       <h1>Sign Up</h1>
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
 
-          <Form.Group controlId='name'>
+        <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
           <Form.Control
             type='name'
@@ -98,7 +99,7 @@ const RegisterScreen = ({ location, history }) => {
           </Link>
         </Col>
       </Row>
-    </FormContainer>
+    </FormContainer></>
   )
 }
 

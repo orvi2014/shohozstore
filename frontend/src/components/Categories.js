@@ -23,6 +23,27 @@ const callouts = [
     imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
     href: '#',
   },
+  {
+    name: 'Shoes',
+    description: 'Daily commute essentials',
+    imageSrc: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=paul-gaudriault-a-QH9MAAVNI-unsplash.jpg',
+    imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
+    href: '#',
+  },
+  {
+    name: 'Watches',
+    description: 'Daily commute essentials',
+    imageSrc: 'https://images.unsplash.com/photo-1511370235399-1802cae1d32f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=alexander-andrews-anUOLC3zMD4-unsplash.jpg',
+    imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
+    href: '#',
+  },
+  {
+    name: 'Perfumes',
+    description: 'Daily commute essentials',
+    imageSrc: 'https://images.unsplash.com/photo-1622618991746-fe6004db3a47?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=birgith-roosipuu-nka_sIQpKEU-unsplash.jpg',
+    imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
+    href: '#',
+  },
 ]
 const Categories = () => {
     return (
@@ -47,7 +68,7 @@ const Categories = () => {
                     {callout.name}
                   </a>
                 </h3>
-                <p className="text-base font-semibold text-gray-900">{callout.description}</p>
+                <p className="text-base font-semibold text-gray-900"><br /></p>
               </div>
             ))}
           </div>

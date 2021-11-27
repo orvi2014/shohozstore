@@ -14,7 +14,7 @@ import { listProducts } from '../actions/productActions';
 const ProductsScreen = ({match}) => {
     const keyword = match.params.keyword;
     const pageNumber = match.params.pageNumber || 1;
-    const category = match.params.category;
+    const category = match.params.category || match.params.hcategory;
     console.log(category);
 
     const dispatch = useDispatch()

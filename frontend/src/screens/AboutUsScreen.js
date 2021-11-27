@@ -1,8 +1,11 @@
 import React from 'react'
+import Meta from '../components/Meta'
 
 const AboutUsScreen = () => {
     return (
-      <><section class="text-gray-600 body-font">
+      <>
+      <Meta title='About Us' />
+      <section class="text-gray-600 body-font">
         <div class="flex flex-col text-center w-full mb-10">
       <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">XZEN</h2>
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">About Us</h1>
