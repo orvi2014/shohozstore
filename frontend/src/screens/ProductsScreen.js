@@ -19,14 +19,14 @@ const ProductsScreen = ({match}) => {
 
     const dispatch = useDispatch()
     const productCategory=useSelector(state => state.productCategory)
-    const { loading, error, products } = productCategory
+    const { loading, error, products, page, pages } = productCategory
 
     const productList=useSelector(state => state.productList)
-    const { page, pages, products:keyProd } = productList
+    const { products:keyProd } = productList
     console.log(keyProd);
 
     useEffect(()=>{
-        dispatch(listProductCategory(category));
+        dispatch(listProductCategory(category,pageNumber));
         dispatch(listProducts(keyword, pageNumber));
 
     },[dispatch, category, keyword, pageNumber])
@@ -94,16 +94,9 @@ const ProductsScreen = ({match}) => {
                         </div>
                     </div>
                 </div>
-            // <Row >
-            //     {products.map(product =>(
-            //         <Col key={product._id} sm={12} md={6} lg={4} xl={3} className="align-items-stretch d-flex">
-            //             <Product product={product}></Product>
-            //         </Col>
-            //     ))}
-            // </Row>
         }
             
-             {/* <Paginate page={page} pages={pages} pageNumber={pageNumber} keyword={keyword ? keyword : ''}></Paginate>    */}
+             <Paginate page={page} pages={pages} pageNumber={pageNumber} category={category ? category : ''}></Paginate>   
             
         </>
     )

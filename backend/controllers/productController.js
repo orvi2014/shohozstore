@@ -40,9 +40,12 @@ const getProductById = asyncHandler(async(req, res)=>{
 // @route   GET /api/products/category/:category
 // @access  Public
 const getProductByCategory = asyncHandler(async(req, res)=>{
-    const products=await Product.find({category: req.params.category})
+    const pageSize = 8;
+    const page=Number(req.query.pageNumber) || 1
+    const count = await Product.countDocuments({category:req.params.category})
+    const products=await Product.find({category: req.params.category}).limit(pageSize).skip(pageSize*(page-1))
     if (products){
-        res.json(products);
+        res.json({products, page, pages: Math.ceil(count/pageSize)});
     }
     else{
         res.status(404)
@@ -54,15 +57,18 @@ const getProductByCategory = asyncHandler(async(req, res)=>{
 // @route   GET /api/products/header/:hcategory
 // @access  Public
 const getProductHeader = asyncHandler(async(req, res)=>{
+    const pageSize = 8;
+    const page=Number(req.query.pageNumber) || 1
     const keyword = {
         description:{
             $regex:req.params.hcategory
         }
         
     }
-    const products = await Product.find({...keyword})
+    const count = await Product.countDocuments({...keyword})
+    const products = await Product.find({...keyword}).limit(pageSize).skip(pageSize*(page-1))
     if(products){
-        res.json(products);
+        res.json({products, page, pages: Math.ceil(count/pageSize)});
     }
     else{
         res.status(404)

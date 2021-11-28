@@ -20,6 +20,7 @@ import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import ProductsScreen from './screens/ProductsScreen';
 import AboutUsScreen from './screens/AboutUsScreen';
+import HeaderCategoryScreen from './screens/HeaderCategoryScreen';
 
 
 const App=()=> {
@@ -38,8 +39,10 @@ const App=()=> {
         <Route path='/profile' component={ProfileScreen}></Route>
         <Route path='/register' component={RegisterScreen}></Route>
         <Route path='/product/:id' component={ProductScreen}></Route>
-        <Route path='/products/category/:category' component={ProductsScreen}></Route>
-        <Route path='/products/header/:hcategory' component={ProductsScreen} exact></Route>
+        <Route path='/products/category/:category' component={ProductsScreen} exact></Route>
+        <Route path='/products/category/:category/page/:pageNumber' component={ProductsScreen} ></Route>
+        <Route path='/products/header/:hcategory' component={HeaderCategoryScreen} exact></Route>
+        <Route path='/products/header/:hcategory/page/:pageNumber' component={HeaderCategoryScreen} ></Route>
         <Route path='/cart/:id?' component={CartScreen}></Route>
         <Route path='/admin/userlist' component={UserListScreen}></Route>
         <Route path='/admin/user/:id/edit' component={UserEditScreen}></Route>

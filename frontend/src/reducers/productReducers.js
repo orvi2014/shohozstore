@@ -42,7 +42,7 @@ export const productCategoryReducer= (state={ products:[] }, action)=>{
         case PRODUCT_CATEGORY_REQUEST:
             return { loading:true, ...state}
         case PRODUCT_CATEGORY_SUCCESS:
-            return { loading:false, products:action.payload }
+            return { loading:false, products:action.payload.products, pages:action.payload.pages, page:action.payload.page}
         case PRODUCT_CATEGORY_FAIL:
             return { loading:false, error:action.payload }
         default:

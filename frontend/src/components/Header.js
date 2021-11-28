@@ -1,13 +1,13 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
+
 import {useDispatch, useSelector} from 'react-redux'
 import { Nav, NavDropdown } from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import { logout } from '../actions/userActions';
-import SearchBox from './SearchBox'
+
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition, Menu } from '@headlessui/react'
-import { MenuIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline'
 
 
 
@@ -25,14 +25,13 @@ const Header = () => {
       featured: [
         {
           name: 'New Arrivals',
-          href: '#',
-          // https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg
+          href: '/products/header/Women-New Arrivals',
           imageSrc: 'https://images.unsplash.com/photo-1513094735237-8f2714d57c13?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=jon-ly-Xn7GvimQrk8-unsplash.jpg',
           imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
         },
         {
           name: 'Basic Tees',
-          href: '#',
+          href: '/products/header/Women-Basic Tees',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
@@ -59,7 +58,7 @@ const Header = () => {
           name: 'Accessories',
           items: [
             { name: 'Watches', href: '/products/header/Women-Watch' },
-            { name: 'Wallets', href: '/products/header/Women-Wallet' },
+            { name: 'Bags', href: '/products/header/Women-Bag' },
             { name: 'Perfumes', href: '/products/header/Women-Perfume' },
             { name: 'Sunglasses', href: '/products/header/Women-Sunglass' },
             { name: 'Hats', href: '/products/header/Women-Hat' },
@@ -70,10 +69,10 @@ const Header = () => {
           id: 'brands',
           name: 'Brands',
           items: [
-            { name: 'Prada', href: '/products/header/Prada' },
+            { name: 'Prada', href: '/products/header/Women-Prada' },
             { name: 'Versace', href: '/products/header/Women-Versace' },
             { name: 'Chanel', href: '/products/header/Women-Chanel' },
-            { name: 'Levis', href: '/products/header/Women-Levis' },
+            { name: 'Louis Vuitton', href: '/products/header/Women-Louis Vuitton' },
             { name: 'Christian Louboutin', href: '/products/header/Women-Christian Louboutin' },
           ],
         },
@@ -86,13 +85,13 @@ const Header = () => {
       featured: [
         {
           name: 'New Arrivals',
-          href: '#',
+          href: '/products/header/Men-New Arrivals',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
           imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
         },
         {
-          name: 'Artwork Tees',
-          href: '#',
+          name: 'Designer Tees',
+          href: '/products/header/Men-Designer Tees',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
@@ -122,6 +121,7 @@ const Header = () => {
             { name: 'Sunglasses', href: '/products/header/Men-Sunglass' },
             { name: 'Hats', href: '/products/header/Men-Hat' },
             { name: 'Belts', href: '/products/header/Men-Belt' },
+            { name: 'Bags', href: '/products/header/Men-Bag' },
           ],
         },
         {
@@ -131,7 +131,7 @@ const Header = () => {
             { name: 'Georgio Armani', href: '/products/header/Men-Armani' },
             { name: 'Versace', href: '/products/header/Men-Versace' },
             { name: 'Tom Ford', href: '/products/header/Men-TomFord' },
-            { name: 'My Way', href: '#' },
+            // { name: 'My Way', href: '#' },
           ],
         },
       ],
@@ -142,13 +142,13 @@ const Header = () => {
       featured: [
         {
           name: 'New Arrivals',
-          href: '#',
+          href: '/products/header/Technology-New Arrivals',
           imageSrc: 'https://images.unsplash.com/photo-1589894404892-7310b92ea7a2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=deep-advani-9MMx869kt0A-unsplash.jpg',
           imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
         },
         {
-          name: 'Basic Tees',
-          href: '#',
+          name: 'Top Rated',
+          href: '/products/header/Technology-Top Rated',
           imageSrc: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=andras-vas-Bd7gNnWJBkU-unsplash.jpg',
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
@@ -159,10 +159,10 @@ const Header = () => {
           name: 'Electronics',
           items: [
             { name: 'Smart Phones', href: '/products/header/Electronics-Smart-Phone' },
-            { name: 'Computer Accessories', href: '#' },
-            { name: 'Networking', href: '#' },
-            { name: 'Headphones', href: '#' },
-            { name: 'Cameras', href: '#' },
+            { name: 'Computer Accessories', href: '/products/header/Electronics-Accessories' },
+            { name: 'Networking', href: '/products/header/Electronics-Networking' },
+            { name: 'Headphones', href: '/products/header/Electronics-Headphone' },
+            { name: 'Cameras', href: '/products/header/Electronics-Camera' },
           ],
         },
         
@@ -182,11 +182,11 @@ const Header = () => {
           id: 'brands',
           name: 'Brands',
           items: [
-            { name: 'Apple', href: '/search/apple' },
-            { name: 'Samsung', href: '#' },
-            { name: 'Asus', href: '#' },
-            { name: 'Canon', href: '#' },
-            { name: 'HP', href: '/search/hp' },
+            { name: 'Apple', href: '/products/header/Apple' },
+            { name: 'Samsung', href: '/products/header/Samsung' },
+            { name: 'Asus', href: '/products/header/Asus' },
+            { name: 'Canon', href: '/products/header/Canon' },
+            { name: 'HP', href: '/products/header/HP' },
           ],
         },
       ],
@@ -364,14 +364,17 @@ function classNames(...classes) {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <a href="/">
-                  <span className="sr-only">Workflow</span>
-                  <img
-                    className="h-8 w-auto"
-                    src="/images/XZEN.png"
-                    alt=""
-                  />
-                </a>
+                <span className="sr-only">Workflow</span>
+                <LinkContainer to="/">
+                  <Nav.Link>
+                    
+                    <img
+                      className="h-8 w-auto"
+                      src="/images/XZEN.png"
+                      alt=""
+                    />
+                  </Nav.Link>
+                </LinkContainer>
               </div>
 
               {/* Flyout menus */}
