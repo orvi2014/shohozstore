@@ -192,7 +192,7 @@ const ProductScreen = (props) => {
                                     </div>
                                     <div className="col-8">
                                         <div className="progress" style={{height:"15px"}}>
-                                        {review == 'NaN%' ? 
+                                        {review === 'NaN%' ? 
                                         <div className="progress-bar" role="progressbar" style={{width:'100%'}} aria-valuenow="75" 
                                         aria-valuemin="0" aria-valuemax="100">0%</div>
                                         :<div className="progress-bar" role="progressbar" style={{width:review}} aria-valuenow="75" 

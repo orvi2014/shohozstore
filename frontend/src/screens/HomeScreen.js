@@ -8,7 +8,6 @@ import Message from '../components/Message';
 import ProductCarousel from '../components/ProductCarousel';
 import CTASection from '../components/CTASection';
 import Categories from '../components/Categories';
-import Mobile_CTASection from '../components/Mobile_CTASection';
 
 
 const HomeScreen = ({match}) => {
@@ -33,7 +32,6 @@ const HomeScreen = ({match}) => {
             {loading ? <Loader>Loading...</Loader> : error ? <Message variant='danger'>{error}</Message> : 
             <div className="bg-white">
                     <div className="max-w-2xl mx-auto py-10 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
-                        {/* <Mobile_CTASection/> */}
                         {!keyword && <CTASection/>}
                         <div id="collections">
                             {!keyword && <Categories/>}

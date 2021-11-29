@@ -62,8 +62,8 @@ const Categories = () => {
                     className="w-full h-full object-center object-cover"
                   />
                 </div>
-                <h3 className="mt-6 text-sm text-gray-900">
-                  <a href={`/products/category/${callout.name}`} className="no-underline">
+                <h3 className="mt-6 text-sm text-gray-900 text-center">
+                  <a href={`/products/category/${callout.name}`} >
                     <span className="absolute inset-0" />
                     {callout.name}
                   </a>

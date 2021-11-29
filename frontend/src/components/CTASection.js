@@ -23,7 +23,7 @@ const CTASection = () => {
             </div>
             <div className="w-full md:w-1/2">
               <div className="w-full h-auto overflow-hidden shadow-xl rounded-xl">
-                  <img src="/images/hero_icon.jpg" />
+                  <img alt='hero_icon' src="/images/hero_icon.jpg" />
                 </div>
             </div>
           </div>
