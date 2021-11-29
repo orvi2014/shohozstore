@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Breadcrumbs = (props) => {
-    console.log(props.length)
+  console.log(props.bc1)
+
     return (
         <nav className="flex" aria-label="Breadcrumb">
   <ol className="inline-flex items-center space-x-1 md:space-x-3">
@@ -13,21 +14,49 @@ const Breadcrumbs = (props) => {
         Home
       </a>
     </li>
-    {props.bc1 ? 
+    
+    {props.bc1 ? props.bc2 ? props.bc3 ? 
+    
+    <><li>
+              <div className="flex items-center">
+                <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                {props.bc2 ? <a href={`/products/header/${props.bc1}`} className="text-gray-700 hover:text-gray-900 ml-1 md:ml-2 text-sm font-medium">{props.bc1}</a> : <span className="text-gray-400 ml-1 md:ml-2 text-sm font-medium">{props.bc1}</span>}
+              </div>
+            </li><li aria-current="page">
+                <div className="flex items-center">
+                  <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                {props.bc2 ? <a href={`/products/header/${props.bc1}-${props.bc2}`} className="text-gray-700 hover:text-gray-900 ml-1 md:ml-2 text-sm font-medium">{props.bc2}</a> : <span className="text-gray-400 ml-1 md:ml-2 text-sm font-medium">{props.bc2}</span>}
+                </div>
+              </li>
+              <li aria-current="page">
+                <div className="flex items-center">
+                  <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                  <span className="text-gray-400 ml-1 md:ml-2 text-sm font-medium">{props.bc3}</span>
+                </div>
+              </li></> 
+    :
+     
+    <><li>
+              <div className="flex items-center">
+                <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                {props.bc2 ? <a href={`/products/header/${props.bc1}`} className="text-gray-700 hover:text-gray-900 ml-1 md:ml-2 text-sm font-medium">{props.bc1}</a> : <span className="text-gray-400 ml-1 md:ml-2 text-sm font-medium">{props.bc1}</span>}
+              </div>
+            </li><li aria-current="page">
+                <div className="flex items-center">
+                  <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                  <span className="text-gray-400 ml-1 md:ml-2 text-sm font-medium">{props.bc2}</span>
+                </div>
+              </li></> 
+    
+    : 
     <li>
       <div className="flex items-center">
         <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
         {props.bc2 ? <a href={`/products/header/${props.bc1}`} className="text-gray-700 hover:text-gray-900 ml-1 md:ml-2 text-sm font-medium">{props.bc1}</a> : <span className="text-gray-400 ml-1 md:ml-2 text-sm font-medium">{props.bc1}</span>}
       </div>
-    </li>: null}
-    {props.bc2 ?
+    </li>
+     : null}
     
-    <li aria-current="page">
-      <div className="flex items-center">
-        <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-        <span className="text-gray-400 ml-1 md:ml-2 text-sm font-medium">{props.bc2}</span>
-      </div>
-    </li> : null}
   </ol>
 </nav>
     )
