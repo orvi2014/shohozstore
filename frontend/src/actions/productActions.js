@@ -67,7 +67,7 @@ export const listProductDetails = (id)=> async (dispatch)=>{
 export const listProductCategory = (category, pageNumber='')=> async (dispatch)=>{
     try{
         dispatch({type: PRODUCT_CATEGORY_REQUEST})
-        if(category == 'Electronics' || category == 'Clothing' || category == 'Shoes' || category == 'Accessories' || category == 'Watches' || category == 'Perfumes'){
+        if(category === 'Electronics' || category === 'Clothing' || category === 'Shoes' || category === 'Accessories' || category === 'Watches' || category === 'Perfumes'){
             const {data} = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`)
             dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data,})
         }
