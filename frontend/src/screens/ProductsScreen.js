@@ -9,7 +9,6 @@ import Message from '../components/Message';
 import Rating from '../components/Rating';
 import ProductScreenCategory from '../components/ProductScreenCategory';
 import { listProducts } from '../actions/productActions';
-import Breadcrumbs from '../components/Breadcrumbs';
 
 
 const ProductsScreen = ({match}) => {
@@ -39,9 +38,7 @@ const ProductsScreen = ({match}) => {
             {loading ? <Loader>Loading...</Loader> : error ? <Message variant='danger'>{error}</Message> : 
             <div className="bg-white">
                     <div className="max-w-2xl mx-auto py-10 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
-                        <Breadcrumbs bc1={category}/>
                         { category && <ProductScreenCategory category={category} /> }
-                        
 
                         <h2 id="products"className="text-2xl font-extrabold tracking-tight text-gray-900">{category}</h2>
                         <div className="mt-1 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
