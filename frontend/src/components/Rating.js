@@ -2,7 +2,7 @@ import React from 'react'
 
 const Rating = (props) => {
     return (
-        <div className="rating">
+        <div className="rating" style={{marginTop:"-0.7rem"}}>
             <span>
                 <i style={{color:props.color}} className={props.value >= 1 ?'fas fa-star' : props.value>=0.5 ? 'fas fa-star-half-alt' :'far fa-star'}/>
             </span>

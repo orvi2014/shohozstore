@@ -27,3 +27,4 @@ yarn-error.log*
 frontend/node_modules
 
 mern-e-commerce.code-workspace
+frontend/src/screens/test.js
