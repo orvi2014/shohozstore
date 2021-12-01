@@ -74,8 +74,11 @@ const ProductScreen = (props) => {
                         <ListGroup.Item>
                             <h3>{product.name}</h3>
                         </ListGroup.Item>
-                        <ListGroup.Item>
+                        <ListGroup.Item style={{marginTop:"0.7rem"}}>
                             <Rating value={product.rating} text={`${product.numReviews} reviews `}/> 
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            Brand: {product.brand}
                         </ListGroup.Item>
                         <ListGroup.Item>
                             Price: ${product.price}

@@ -59,10 +59,10 @@ const ProductsScreen = ({match}) => {
                                     {product.name}
                                     </Link>
                                 </h3>
-                                <p className="mt-1 text-sm text-gray-500">${product.price}</p>
-                                <Rating value={product.rating} text={product.numReviews} className="mt-1 text-sm text-gray-500"/>
+                                <p className="text-sm text-gray-500" style={{marginTop:"-1.2rem"}}>${product.price}</p>
+                                <Rating value={product.rating} text={product.numReviews} className="mt-0 text-sm text-gray-500"/>
                                 </div>
-                                {/* <p className="text-sm font-medium text-gray-900">{product.price}</p> */}
+                                {/* <p className="text-sm font-medium text-gray-900" style={{marginTop:"1.05rem"}}>${product.price}</p> */}
                             </div>
                             </div>
                         ))}
