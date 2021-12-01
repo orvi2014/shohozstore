@@ -9,7 +9,7 @@ const Paginate = ({pages, page, isAdmin=false, category, hcategory}) => {
                     <div className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
                         
                     </div>
-                    <div className="sm:flex hidden">
+                    <div className="flex">
                         {[...Array(pages).keys()].map(i => (
                             <LinkContainer key={i+1} to={!isAdmin ? category ? `/products/category/${category}/page/${i+1}` 
                             : `/products/header/${hcategory}/page/${i+1}`: `/admin/productList/${i+1}`}>
