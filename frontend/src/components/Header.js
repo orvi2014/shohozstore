@@ -372,7 +372,7 @@ function classNames(...classes) {
                     
                     <img
                       className="h-8 w-auto"
-                      src="/images/XZEN.png"
+                      src="https://res.cloudinary.com/xzen/image/upload/f_webp/v1638709367/XZEN_m3ylq4.webp"
                       alt=""
                     />
                   </Nav.Link>
