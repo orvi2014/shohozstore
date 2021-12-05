@@ -5,42 +5,42 @@ const callouts = [
   {
     name: 'Clothing',
     description: 'Work from home accessories',
-    imageSrc: '/images/category-clothing.jpg',
+    imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,w_963/v1638708826/Category-Images/clothing-clothing_tmqvoe.webp',
     imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
     href: '#',
   },
   {
     name: 'Electronics',
     description: 'Journals and note-taking',
-    imageSrc: '/images/category-electronics.jpg',
+    imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,f_webp,w_988/v1638706566/Category-Images/category-electronics_i8nvgg.webp',
     imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
     href: '#',
   },
   {
     name: 'Accessories',
     description: 'Daily commute essentials',
-    imageSrc: '/images/category-accessories.jpg',
+    imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,f_webp,w_1034/v1638706566/Category-Images/category-accessories_lkrcvg.webp',
     imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
     href: '#',
   },
   {
     name: 'Shoes',
     description: 'Daily commute essentials',
-    imageSrc: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=paul-gaudriault-a-QH9MAAVNI-unsplash.jpg',
+    imageSrc: 'https://res.cloudinary.com/xzen/image/upload/v1638707015/Category-Images/category-shoes_ce7mlt.webp',
     imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
     href: '#',
   },
   {
     name: 'Watches',
     description: 'Daily commute essentials',
-    imageSrc: 'https://images.unsplash.com/photo-1511370235399-1802cae1d32f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=alexander-andrews-anUOLC3zMD4-unsplash.jpg',
+    imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,w_1030/v1638708056/Category-Images/category-watches_eqmgkv.webp',
     imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
     href: '#',
   },
   {
     name: 'Perfumes',
     description: 'Daily commute essentials',
-    imageSrc: 'https://images.unsplash.com/photo-1622618991746-fe6004db3a47?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=birgith-roosipuu-nka_sIQpKEU-unsplash.jpg',
+    imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,f_webp,w_1006/v1638706566/Category-Images/category-perfumes_aopzst.webp',
     imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
     href: '#',
   },
@@ -59,7 +59,7 @@ const Categories = () => {
                   <img
                     src={callout.imageSrc}
                     alt={callout.imageAlt}
-                    className="w-full h-full object-center object-cover"
+                    className="Sirv w-full h-full object-center object-cover"
                   />
                 </div>
                 <h3 className="mt-6 text-sm text-gray-900 text-center">
