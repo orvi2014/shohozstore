@@ -6,6 +6,7 @@ import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message.js'
 import Loader from '../components/Loader.js'
+import Meta from '../components/Meta.js'
 
 import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions.js'
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants.js'
@@ -36,7 +37,59 @@ const OrderScreen = ({history,match}) => {
 
         order.itemsPrice =addDecimals(order.orderItems.reduce((acc,item)=> acc+item.price * item.qty,0))
     }
-    
+    async function displayRazorPay(){
+            const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+            if(!res){
+                alert('Something went wrong')
+                return 
+            }
+            const data =await fetch(`/api/payments/${orderID}`, {method:"POST"}).then((t)=>t.json())
+            console.log(data)
+            const options = {
+            "key": "rzp_test_jffhfACN1gQNzj", // Enter the Key ID generated from the Dashboard
+            "amount": data.amount.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": data.currency,
+            "name": "XZEN",
+            "description": "Test Transaction",
+            "image": "https://res.cloudinary.com/xzen/image/upload/f_webp/v1638709367/XZEN_m3ylq4.webp",
+            "order_id": data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response){
+                successPaymentHandler(response)
+                alert(response.razorpay_payment_id);
+                alert(response.razorpay_order_id);
+                alert(response.razorpay_signature)
+            },
+            "prefill": {
+                "name": order.user.name,
+                "email": order.user.email,
+                "contact": "XXXXXXXXXX"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+    }
+    function loadScript(src){
+        return new Promise ((resolve)=>{
+            const script = document.createElement("script");
+            script.src = src;
+            document.body.appendChild(script);
+            script.onload = ()=>{
+                resolve(true)
+            }
+            script.onerror = ()=>{
+                resolve(false)
+            }
+            document.body.appendChild(script);
+        })
+        
+
+    }
 
     useEffect(()=>{
         if(!userInfo){
@@ -69,7 +122,7 @@ const OrderScreen = ({history,match}) => {
     },[dispatch,order,orderID, successPay, successDeliver, history, userInfo])
 
     const successPaymentHandler = (paymentResult)=>{
-        console.log(paymentResult)
+        console.log("payment result",paymentResult)
         dispatch(payOrder(orderID,paymentResult))
     }
 
@@ -79,6 +132,7 @@ const OrderScreen = ({history,match}) => {
 
     return loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>:
     <>
+        <Meta title={order._id} />
         <h1>Order #{order._id}</h1>
         <Row>
                 <Col md={8}>
@@ -91,7 +145,7 @@ const OrderScreen = ({history,match}) => {
                                 <strong>Address:</strong>
                                 {order.shippingAddress.address},{order.shippingAddress.city} {' '},{order.shippingAddress.postalCode} {' '},{order.shippingAddress.country}
                             </p>
-                            {order.isDelivered ? <Message variant='success'>Delivered On{order.deliveredAt}</Message>: <Message variant='danger'>Not Delivered </Message>}
+                            {order.isDelivered ? <Message variant='success'>Delivered On {order.deliveredAt}</Message>: <Message variant='danger'>Not Delivered </Message>}
                         </ListGroup.Item> 
 
                         <ListGroup.Item>
@@ -100,7 +154,7 @@ const OrderScreen = ({history,match}) => {
                                 <strong>Method: </strong>
                                 {order.paymentMethod}
                             </p>
-                            {order.isPaid ? <Message variant='success'>Paid On{order.paidAt}</Message>: <Message variant='danger'>Not Paid </Message>}
+                            {order.isPaid ? <Message variant='success'>Paid On {order.paidAt}</Message>: <Message variant='danger'>Not Paid </Message>}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
@@ -165,16 +219,23 @@ const OrderScreen = ({history,match}) => {
                                 </Row>
                             </ListGroup.Item>
                          
-                            {!order.isPaid &&(
+                            {!order.isPaid && order.paymentMethod == 'Paypal'&&(
                                 <ListGroup.Item>
                                     {loadingPay && <Loader />}
                                     {!sdkReady ? <Loader /> : <PayPalButton amount={order.totalPrice.toFixed(0)} onSuccess={successPaymentHandler}/>}
                                 </ListGroup.Item>
                             )}
+
+                            {!order.isPaid && order.paymentMethod != 'Paypal' &&  (
+                                <ListGroup.Item>
+                                <Button type='button' className='btn btn-primary w-100' onClick={displayRazorPay} >
+                                    Pay With {order.paymentMethod}
+                                </Button>
+                            </ListGroup.Item>
+                            )}
                             {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                                 <ListGroup.Item>
                                     {loadingDeliver && <Loader />}
-                                    <p>{order._id}</p>
                                     <Button onClick={deliverHandler} className="btn btn-primary w-100">Mark As Delivered</Button>
                                 </ListGroup.Item>
                             )}

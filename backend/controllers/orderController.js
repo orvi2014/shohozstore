@@ -1,5 +1,8 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js';
+import Razorpay from 'razorpay';
+import shortid from 'shortid';
+let date_ob = new Date();
 
 
 //Create New Order [POST , PRIVATE]
@@ -41,21 +44,35 @@ const getOrderByID = asyncHandler(async(req, res)=>{
 
 // Update Order to 'PAID' 
 // @desc    Update order to paid
-// @route   GET /api/orders/:id/pay
+// @route   PUT /api/orders/:id/pay
 // @access  Private
 const updateOrderToPaid = asyncHandler(async(req, res)=>{
     const order=await Order.findById(req.params.id)
+    console.log("order is ",order)
+    console.log("req.body is ",req.body)
 
     if(order){
+        console.log('IN if')
         order.isPaid=true
         order.paidAt=Date.now()
-        order.paymentResult={
-            id:req.body.id,
+        console.log("Till Date")
+        if(req.body.id){
+            order.paymentResult={
+            id:req.body.id ,
             status: req.body.status,
             update_time:req.body.update_time,
             email_address:req.body.payer.email_address
+            }
+        }else{
+            order.paymentResult={
+                id:req.body.razorpay_payment_id ,
+                update_time:date_ob.getDate()
+            }
         }
+        
+        console.log("Till Payment result")
         const updatedOrder = await order.save()
+        console.log("UPDATED ORDER",updatedOrder)
         res.json(updatedOrder)
     }else{
         res.status(404)
@@ -100,4 +117,36 @@ const getOrders = asyncHandler(async(req, res)=>{
     const orders=await Order.find({}).populate('user', 'id name')
     res.json(orders)   
 })
-export {addOrderItems, getOrderByID, updateOrderToPaid,updateOrderToDelivered, getMyOrders, getOrders}
+
+
+
+const razorPayOrder = asyncHandler(async(req, res)=>{
+    const order=await Order.findById(req.params.id)
+    const razorpay = new Razorpay({
+        key_id: 'rzp_test_jffhfACN1gQNzj',
+        key_secret: '7zl9MCIXBR18wfFf8CQhethP',
+        });
+
+    const payment_capture=1
+    const amount = order.totalPrice
+    const currency = 'INR'
+    const receipt = shortid.generate();
+
+    const options = {
+        amount: amount*100,
+        currency,
+        receipt,
+        payment_capture,
+    }
+    const response = await razorpay.orders.create(options)
+    console.log(response)
+    res.json({
+        id: response.id,
+        currency: 'INR',
+        amount:response.amount,
+        order
+        
+    })
+
+})
+export {addOrderItems, getOrderByID, updateOrderToPaid,updateOrderToDelivered, getMyOrders, getOrders, razorPayOrder}
