@@ -9,7 +9,18 @@ import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import uploadCarouselRoutes from './routes/uploadCarouselRoutes.js';
 import path from 'path';
+import Razorpay from 'razorpay';
+import razorPayRoutes from './routes/razorPayRoutes.js';
 const app = express();
+
+
+
+
+const razorpay = new Razorpay({
+  key_id: 'rzp_test_jffhfACN1gQNzj',
+  key_secret: '7zl9MCIXBR18wfFf8CQhethP',
+});
+
 
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));
@@ -25,14 +36,13 @@ connectDB()
 app.use(express.json())
 
 
-
-
-
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)
 app.use('/api/uploadCarousel', uploadCarouselRoutes)
+app.use('/api/payments',razorPayRoutes)
+
 
 app.get('/api/config/paypal',(req,res)=> res.send(process.env.PAYPAL_CLIENT_ID))
 

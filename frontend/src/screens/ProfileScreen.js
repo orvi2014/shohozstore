@@ -3,6 +3,7 @@ import { Form, Button, Row, Col, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Meta from '../components/Meta'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { listMyOrder } from '../actions/orderActions'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -19,7 +20,7 @@ const ProfileScreen = ({ location, history }) => {
 
   const userDetails = useSelector((state) => state.userDetails)
   const { loading, error, user} = userDetails
-  console.log("user is ",user)
+  
 
 
   const userLogin = useSelector((state) => state.userLogin)
@@ -58,7 +59,9 @@ const ProfileScreen = ({ location, history }) => {
     
   }
 
-  return <Row>
+  return (
+  <><Meta title='Profile' />
+  <Row>
     <Col md={3}>
       <h1>User Profile</h1>
       {message && <Message variant='danger'>{message}</Message>}
@@ -67,7 +70,7 @@ const ProfileScreen = ({ location, history }) => {
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
 
-          <Form.Group controlId='name'>
+        <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
           <Form.Control
             type='name'
@@ -106,20 +109,20 @@ const ProfileScreen = ({ location, history }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
-  
+
         <Button type='submit' variant='primary' className='mt-3'>
           Update
         </Button>
-     
+
       </Form>
     </Col>
 
     <Col md={9}>
-      <h2>My Orders!</h2>
-      {loadingOrders ? <Loader />: errorOrders ? <Message variant='danger'>{errorOrders}</Message> : (
+      <h1>My Orders</h1>
+      {loadingOrders ? <Loader /> : errorOrders ? <Message variant='danger'>{errorOrders}</Message> : (
         <Table striped hover responsive className='table-sm'>
           <thead>
-            <tr style={{textAlign:"center"}}>
+            <tr style={{ textAlign: "center" }}>
               <th>ID</th>
               <th>DATE</th>
               <th>TOTAL</th>
@@ -129,20 +132,20 @@ const ProfileScreen = ({ location, history }) => {
             </tr>
           </thead>
           <tbody>
-            {orders.map(order =>(
-              <tr style={{textAlign:"center"}}key={order._id}>
+            {orders.map(order => (
+              <tr style={{ textAlign: "center" }} key={order._id}>
                 <td>{order._id}</td>
-                <td>{order.createdAt.substring(0,10)}</td>
+                <td>{order.createdAt.substring(0, 10)}</td>
                 <td>${order.totalPrice}</td>
-                <td>{order.isPaid ? order.paidAt.substring(0,10) : (
-                  <i className='fas fa-times' style={{color:"red"}}></i>
+                <td>{order.isPaid ? order.paidAt.substring(0, 10) : (
+                  <i className='fas fa-times' style={{ color: "red" }}></i>
                 )}</td>
-                <td>{order.isDelivered ? order.deliveredAt.substring(0,10) : (
-                  <i className='fas fa-times' style={{color:"red"}}></i>
+                <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : (
+                  <i className='fas fa-times' style={{ color: "red" }}></i>
                 )}</td>
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
-                    <Button className='btn-sm'variant='dark'>
+                    <Button className='btn-sm' variant='dark'>
                       Details
                     </Button>
                   </LinkContainer>
@@ -154,9 +157,9 @@ const ProfileScreen = ({ location, history }) => {
       )}
     </Col>
 
-  </Row>
+  </Row></>
     
-}
+  )}
 
 
 export default ProfileScreen
