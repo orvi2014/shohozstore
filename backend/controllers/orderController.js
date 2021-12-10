@@ -119,34 +119,45 @@ const getOrders = asyncHandler(async(req, res)=>{
 })
 
 
-
+// Get All User Orders [PRIVATE , GET] [api/payments/:id]
+// @desc    POST Payment Info
+// @route   POST /api/payments/:id
+// @access  Private
 const razorPayOrder = asyncHandler(async(req, res)=>{
     const order=await Order.findById(req.params.id)
+    console.log("order is ",order)
     const razorpay = new Razorpay({
         key_id: 'rzp_test_jffhfACN1gQNzj',
         key_secret: '7zl9MCIXBR18wfFf8CQhethP',
         });
-
+    console.log("razorpay object is ",razorpay)
     const payment_capture=1
     const amount = order.totalPrice
     const currency = 'INR'
     const receipt = shortid.generate();
 
     const options = {
-        amount: amount*100,
+        amount: parseInt(amount*100),
         currency,
         receipt,
         payment_capture,
     }
+    console.log("options",options)
+    try{
     const response = await razorpay.orders.create(options)
-    console.log(response)
+    console.log("response is ",response)
     res.json({
         id: response.id,
         currency: 'INR',
         amount:response.amount,
         order
-        
-    })
+    }
+    )
+}catch(err){
+    console.log("error is ",err)
+    res.status(400)
+    throw new Error(err)
+}
 
 })
 export {addOrderItems, getOrderByID, updateOrderToPaid,updateOrderToDelivered, getMyOrders, getOrders, razorPayOrder}
