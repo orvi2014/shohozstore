@@ -219,14 +219,14 @@ const OrderScreen = ({history,match}) => {
                                 </Row>
                             </ListGroup.Item>
                          
-                            {!order.isPaid && order.paymentMethod == 'Paypal'&&(
+                            {!order.isPaid && order.paymentMethod === 'Paypal'&&(
                                 <ListGroup.Item>
                                     {loadingPay && <Loader />}
                                     {!sdkReady ? <Loader /> : <PayPalButton amount={order.totalPrice.toFixed(0)} onSuccess={successPaymentHandler}/>}
                                 </ListGroup.Item>
                             )}
 
-                            {!order.isPaid && order.paymentMethod != 'Paypal' &&  (
+                            {!order.isPaid && order.paymentMethod !== 'Paypal' &&  (
                                 <ListGroup.Item>
                                 <Button type='button' className='btn btn-primary w-100' onClick={displayRazorPay} >
                                     Pay With {order.paymentMethod}
