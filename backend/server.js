@@ -15,13 +15,6 @@ const app = express();
 
 
 
-
-const razorpay = new Razorpay({
-  key_id: 'rzp_test_jffhfACN1gQNzj',
-  key_secret: '7zl9MCIXBR18wfFf8CQhethP',
-});
-
-
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));
 }

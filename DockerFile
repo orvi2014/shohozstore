@@ -1,6 +1,6 @@
 # DOCKERFILE FOR THE BACKEND
 FROM node:14.16.0
-WORKDIR /usr/src/app/client
+WORKDIR /usr/src/app/server
 COPY package*.json ./
 RUN npm install
 COPY . .
