@@ -127,8 +127,8 @@ const razorPayOrder = asyncHandler(async(req, res)=>{
     const order=await Order.findById(req.params.id)
     console.log("order is ",order)
     const razorpay = new Razorpay({
-        key_id: 'rzp_test_jffhfACN1gQNzj',
-        key_secret: '7zl9MCIXBR18wfFf8CQhethP',
+        key_id: process.env.RAZOR_PAY_KEY_ID,
+        key_secret: process.env.RAZORPAY_KEY_SECRET,
         });
     console.log("razorpay object is ",razorpay)
     const payment_capture=1

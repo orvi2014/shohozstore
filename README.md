@@ -12,14 +12,14 @@ This is a full stack E-Commerce Application built using MongoDB, Express.JS, Rea
 - Product reviews and ratings
 - Top products carousel
 - Product pagination
-- Product search feature
+- Breadcrumbs for navigational trail
 - User profile with orders
 - Admin product management
 - Admin user management
 - Admin Order details page
 - Mark orders as delivered option
 - Checkout process (shipping, payment method, etc)
-- PayPal / credit card integration
+- PayPal / Credit Card/ UPI integration [Using Razor Pay Payments Gateway]
 - Database seeder (products & users)
 
 ## Usage
@@ -42,7 +42,11 @@ PORT = 5000
 MONGO_URI = Your Mongo DB URI
 JWT_SECRET = Any Secret Key
 PAYPAL_CLIENT_ID = Your Paypal Client Id
+RAZORPAY_KEY_SECRET=Your RazorPay key secret
+RAZOR_PAY_KEY_ID=Your razor pay key id
 ```
+
+Note: For basic functionality without payment gateway or authentication then, only MONGO_URI, NODE_ENV & PORT env is required
 
 ### Install Dependencies (frontend & backend)
 
@@ -93,6 +97,4 @@ admin@example.com (Admin)
 john@example.com (Customer)
 123456
 
-jane@example.com (Customer)
-123456
 ```
