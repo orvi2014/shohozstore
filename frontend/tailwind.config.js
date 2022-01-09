@@ -10,5 +10,5 @@ module.exports = {
       padding: ['responsive', 'last', 'first', 'hover', 'focus', 'active', 'group-hover'],
     },
   },
-  plugins: [require('@tailwindcss/aspect-ratio'),],
+  plugins: [require('@tailwindcss/aspect-ratio'),('@tailwindcss/forms')],
 }

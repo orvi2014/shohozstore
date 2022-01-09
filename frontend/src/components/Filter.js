@@ -1,35 +1,29 @@
 import React from 'react'
-import {useEffect} from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
-import { listProductCategory} from '../actions/productActions';
-import Rating from '../components/Rating';
-import Meta from '../components/Meta';
-import Paginate from '../components/Paginate';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
-import Breadcrumbs from '../components/Breadcrumbs';
 import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon } from '@heroicons/react/solid'
+import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
+import Loader from './Loader'
+import Message from './Message'
+import { Link } from 'react-router-dom'
+import Rating from './Rating'
 
-const HeaderCategoryScreen = ({match}) => {
+const Filter = (props) => {
     const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
   { name: 'Best Rating', href: '#', current: false },
   { name: 'Newest', href: '#', current: false },
   { name: 'Price: Low to High', href: '#', current: false },
   { name: 'Price: High to Low', href: '#', current: false },
-    ]
-    const subCategories = [
+]
+const subCategories = [
   { name: 'Totes', href: '#' },
   { name: 'Backpacks', href: '#' },
   { name: 'Travel Bags', href: '#' },
   { name: 'Hip Bags', href: '#' },
   { name: 'Laptop Sleeves', href: '#' },
-    ]
-    const filters = [
+]
+const filters = [
   {
     id: 'color',
     name: 'Color',
@@ -65,31 +59,17 @@ const HeaderCategoryScreen = ({match}) => {
       { value: '40l', label: '40L', checked: true },
     ],
   },
-    ]
-    function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-    }
-    const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-    const category =match.params.hcategory;
-    const csplit = category.split('-',3);
-    const pageNumber = match.params.pageNumber || 1;
-    console.log("csplit",csplit[0],csplit[1],csplit[2]);
-    const dispatch = useDispatch()
-    const productCategory=useSelector(state => state.productCategory)
-    const { loading, error, products, page, pages } = productCategory
-
-    useEffect(()=>{
-        dispatch(listProductCategory(category, pageNumber));
-
-    },[dispatch, category, pageNumber])
+]
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
     return (
-        <>
-        <Meta title={category} />
         <div className="bg-white">
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
-          <Dialog as="div" className="fixed inset-0 flex z-40 " onClose={setMobileFiltersOpen}>
+          <Dialog as="div" className="fixed inset-0 flex z-40 lg:hidden" onClose={setMobileFiltersOpen}>
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -186,11 +166,11 @@ const HeaderCategoryScreen = ({match}) => {
         </Transition.Root>
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative  flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{csplit[0]}</h1>
+          <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">New Arrivals</h1>
 
             <div className="flex items-center">
-              <Menu as="div" className="z-10 relative inline-block text-left">
+              <Menu as="div" className="relative inline-block text-left">
                 <div>
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                     Sort
@@ -233,13 +213,13 @@ const HeaderCategoryScreen = ({match}) => {
                 </Transition>
               </Menu>
 
-              {/* <button type="button" className="p-2 -m-2 ml-5 sm:ml-7 text-gray-400 hover:text-gray-500">
+              <button type="button" className="p-2 -m-2 ml-5 sm:ml-7 text-gray-400 hover:text-gray-500">
                 <span className="sr-only">View grid</span>
                 <ViewGridIcon className="w-5 h-5" aria-hidden="true" />
-              </button> */}
+              </button>
               <button
                 type="button"
-                className="p-2 -m-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 "
+                className="p-2 -m-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 lg:hidden"
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <span className="sr-only">Filters</span>
@@ -253,9 +233,9 @@ const HeaderCategoryScreen = ({match}) => {
               Products
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-1 gap-x-8 gap-y-10">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
               {/* Filters */}
-              <form className="hidden ">
+              <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
                 <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6 border-b border-gray-200">
                   {subCategories.map((category) => (
@@ -311,15 +291,11 @@ const HeaderCategoryScreen = ({match}) => {
 
               {/* Product grid */}
               <div className="lg:col-span-3">
-                  {/* <div className="flex flex-col text-center w-full mb-20">
-                    <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">{csplit[2] ? csplit[1]+" "+"/"+" "+csplit[2] : csplit[1] }</h1>
-                </div> */}
-                <Breadcrumbs bc1={csplit[0]} bc2={csplit[1]} bc3={csplit[2]}/>
-                  {loading ? <Loader>Loading...</Loader> : error ? <Message variant='danger'>{error}</Message> :
+                  {props.loading ? <Loader>Loading...</Loader> : props.error ? <Message variant='danger'>{props.error}</Message> :
                 <div className="flex flex-wrap -m-4">
                     <div className="max-w-2xl mx-auto py-10 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
                         <div className="mt-1 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                            {products.map((product) => (
+                            {props.products.map((product) => (
                                 <div key={product._id} className="group relative">
                                     <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                                         <img
@@ -350,8 +326,7 @@ const HeaderCategoryScreen = ({match}) => {
                     
                 </div>}
                 {/* Replace with your content */}
-                <Paginate page={page} pages={pages} pageNumber={pageNumber} hcategory={category ? category : ''}></Paginate>
-                {/* <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 lg:h-full" /> */}
+                <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 lg:h-full" />
                 {/* /End replace */}
               </div>
             </div>
@@ -359,10 +334,25 @@ const HeaderCategoryScreen = ({match}) => {
         </main>
       </div>
     </div>
-        
-        
-        </>
     )
 }
 
-export default HeaderCategoryScreen
+export default Filter
+
+
+/*
+  This example requires Tailwind CSS v2.0+ 
+  
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+*/
