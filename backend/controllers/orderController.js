@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js';
 import Razorpay from 'razorpay';
 import shortid from 'shortid';
+import sgMail from '@sendgrid/mail';
 let date_ob = new Date();
 
 
@@ -73,6 +74,40 @@ const updateOrderToPaid = asyncHandler(async(req, res)=>{
         console.log("Till Payment result")
         const updatedOrder = await order.save()
         console.log("UPDATED ORDER",updatedOrder)
+
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        const msg = {
+        to: 'xosteve2640@gmail.com', // Change to your recipient
+        from: 'noreplyxzen@gmail.com', // Change to your verified sender
+        templateId:'d-81ef92c5903246a587ab7c5b0e6212d3',
+        dynamic_template_data:{
+            "name":order.name,
+            "order_no":order._id,
+            "address":order.shippingAddress.address,
+            "city":order.shippingAddress.city,
+            "country":order.shippingAddress.country,
+            "pin_code":order.shippingAddress.postalCode,
+            "phone_no":order.phone,
+            "sub_total":order.orderItems.reduce((sum, item) => sum + Number(item.price), 0),
+            "shipping":order.shippingPrice,
+            "tax":order.taxPrice,
+            "total_price":order.totalPrice,
+            "payment_method":order.paymentMethod,
+            "order_link":order._id
+        },
+        subject: 'Thank You Placing An Order With XZEN : '+`{order.name}`,
+        text: 'and easy to do anywhere, even with Node.js',
+        html: '<strong>Your Order Has Been Placed Successfully' + `{order._id}` + '</strong>',
+        }
+        sgMail
+        .send(msg)
+        .then(() => {
+            console.log('Email sent')
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+
         res.json(updatedOrder)
     }else{
         res.status(404)
