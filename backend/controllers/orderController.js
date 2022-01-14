@@ -75,8 +75,8 @@ const updateOrderToPaid = asyncHandler(async(req, res)=>{
         sgMail.setApiKey(process.env.SENDGRID_API_KEY)
         const msg = {
         to: order.user.email, // Change to your recipient
-        from: 'Your Email Address', // Change to your verified sender
-        templateId:'Your SendGrid Template ID', //Your SendGrid template id
+        from: 'noreplyxzen@gmail.com', // Change to your verified sender
+        templateId:'d-81ef92c5903246a587ab7c5b0e6212d3', //Your SendGrid template id
         dynamic_template_data:{
             "name":order.user.name.split(' ')[0],
             "email":order.user.email,
