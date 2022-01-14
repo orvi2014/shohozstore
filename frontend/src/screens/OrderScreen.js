@@ -10,6 +10,7 @@ import Meta from '../components/Meta.js'
 
 import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions.js'
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants.js'
+import { CART_CLEAR } from '../constants/cartConstants.js'
 
 const OrderScreen = ({history,match}) => {
     const dispatch = useDispatch()
@@ -110,6 +111,7 @@ const OrderScreen = ({history,match}) => {
         if(!order || order._id !== orderID || successPay || successDeliver) {
             dispatch({type:ORDER_PAY_RESET})
             dispatch({type:ORDER_DELIVER_RESET})
+            dispatch({type:CART_CLEAR})
             dispatch(getOrderDetails(orderID))
     }else if(!order.isPaid){
         if(!window.paypal){
