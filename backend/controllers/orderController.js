@@ -48,15 +48,13 @@ const getOrderByID = asyncHandler(async(req, res)=>{
 // @route   PUT /api/orders/:id/pay
 // @access  Private
 const updateOrderToPaid = asyncHandler(async(req, res)=>{
-    const order=await Order.findById(req.params.id)
-    console.log("order is ",order)
-    console.log("req.body is ",req.body)
+    const order=await Order.findById(req.params.id).populate('user', 'name email')
 
     if(order){
-        console.log('IN if')
+
         order.isPaid=true
         order.paidAt=Date.now()
-        console.log("Till Date")
+  
         if(req.body.id){
             order.paymentResult={
             id:req.body.id ,
@@ -71,17 +69,17 @@ const updateOrderToPaid = asyncHandler(async(req, res)=>{
             }
         }
         
-        console.log("Till Payment result")
+
         const updatedOrder = await order.save()
-        console.log("UPDATED ORDER",updatedOrder)
 
         sgMail.setApiKey(process.env.SENDGRID_API_KEY)
         const msg = {
-        to: 'xosteve2640@gmail.com', // Change to your recipient
-        from: 'noreplyxzen@gmail.com', // Change to your verified sender
-        templateId:'d-81ef92c5903246a587ab7c5b0e6212d3',
+        to: order.user.email, // Change to your recipient
+        from: 'Your Email Address', // Change to your verified sender
+        templateId:'Your SendGrid Template ID', //Your SendGrid template id
         dynamic_template_data:{
-            "name":order.name,
+            "name":order.user.name.split(' ')[0],
+            "email":order.user.email,
             "order_no":order._id,
             "address":order.shippingAddress.address,
             "city":order.shippingAddress.city,
@@ -95,9 +93,6 @@ const updateOrderToPaid = asyncHandler(async(req, res)=>{
             "payment_method":order.paymentMethod,
             "order_link":order._id
         },
-        subject: 'Thank You Placing An Order With XZEN : '+`{order.name}`,
-        text: 'and easy to do anywhere, even with Node.js',
-        html: '<strong>Your Order Has Been Placed Successfully' + `{order._id}` + '</strong>',
         }
         sgMail
         .send(msg)

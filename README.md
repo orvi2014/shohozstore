@@ -20,6 +20,7 @@ This is a full stack E-Commerce Application built using MongoDB, Express.JS, Rea
 - Mark orders as delivered option
 - Checkout process (shipping, payment method, etc)
 - PayPal / Credit Card/ UPI integration [Using Razor Pay Payments Gateway]
+- Automatic Order Confirmation Email Upon Payment Completion [Using SendGrid E-Mail API]
 - Database seeder (products & users)
 
 ## Usage
@@ -39,14 +40,22 @@ Create a .env file in then root and add the following
 ```
 NODE_ENV = Development
 PORT = 5000
-MONGO_URI = Your Mongo DB URI
+MONGO_URI = Your Mongo DB URI [Mongo DB connection string]
 JWT_SECRET = Any Secret Key
-PAYPAL_CLIENT_ID = Your Paypal Client Id
-RAZORPAY_KEY_SECRET=Your RazorPay key secret
-RAZOR_PAY_KEY_ID=Your razor pay key id
+PAYPAL_CLIENT_ID = Your Paypal Client Id [PayPal Payment Gateway]
+RAZORPAY_KEY_SECRET=Your RazorPay key secret [RazorPay Payment Gateway]
+RAZOR_PAY_KEY_ID=Your razor pay key id [RazorPay Payment Gateway]
+SENDGRID_API_KEY= Your Sendgrid API Key [Email- Integration]
 ```
 
-Note: For basic functionality without payment gateway or authentication then, only MONGO_URI, NODE_ENV & PORT env is required
+Note: For basic functionality without payment gateway , authentication & Email Integration then, only MONGO_URI, NODE_ENV & PORT env is required
+
+### Enable Email - Integration
+
+- Add your sendgrid api key to the `.env` file
+- Add your `from email Id` and `Sendgrid Template ID` in the [Link text Here](https://github.com/xosteve26/XZEN/blob/master/backend/controllers/orderController.js#L78-L79)
+
+- [Note: In order to obtain a template ID, you must login to your sendgrid account and navigate to the 'Dynamic Template' section and create your own design template following which a template ID will be available]
 
 ### Install Dependencies (frontend & backend)
 
@@ -95,6 +104,9 @@ admin@example.com (Admin)
 123456
 
 john@example.com (Customer)
+123456
+
+jane@example.com (Customer)
 123456
 
 ```
