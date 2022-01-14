@@ -48,14 +48,14 @@ RAZOR_PAY_KEY_ID=Your razor pay key id [RazorPay Payment Gateway]
 SENDGRID_API_KEY= Your Sendgrid API Key [Email- Integration]
 ```
 
-Note: For basic functionality without payment gateway , authentication & Email Integration then, only MONGO_URI, NODE_ENV & PORT env is required
+**Note: For basic functionality without payment gateway , authentication & Email Integration then, only MONGO_URI, NODE_ENV & PORT env is required**
 
 ### Enable Email - Integration
 
 - Add your sendgrid api key to the `.env` file
-- Add your `from email Id` and `Sendgrid Template ID` in the [Link text Here](https://github.com/xosteve26/XZEN/blob/master/backend/controllers/orderController.js#L78-L79)
+- Add your `from email Id` and `Sendgrid Template ID` in the [./backend/controllers/ordercontroller.js file](https://github.com/xosteve26/XZEN/blob/master/backend/controllers/orderController.js#L78-L79)
 
-- [Note: In order to obtain a template ID, you must login to your sendgrid account and navigate to the 'Dynamic Template' section and create your own design template following which a template ID will be available]
+- **[Note: In order to obtain a `Template ID`, you must login to your sendgrid account and navigate to the 'Dynamic Template' section and create your own design template following which a template ID will be available]**
 
 ### Install Dependencies (frontend & backend)
 

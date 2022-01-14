@@ -155,12 +155,10 @@ const getOrders = asyncHandler(async(req, res)=>{
 // @access  Private
 const razorPayOrder = asyncHandler(async(req, res)=>{
     const order=await Order.findById(req.params.id)
-    console.log("order is ",order)
     const razorpay = new Razorpay({
         key_id: process.env.RAZOR_PAY_KEY_ID,
         key_secret: process.env.RAZORPAY_KEY_SECRET,
         });
-    console.log("razorpay object is ",razorpay)
     const payment_capture=1
     const amount = order.totalPrice
     const currency = 'INR'
@@ -172,10 +170,10 @@ const razorPayOrder = asyncHandler(async(req, res)=>{
         receipt,
         payment_capture,
     }
-    console.log("options",options)
+
     try{
     const response = await razorpay.orders.create(options)
-    console.log("response is ",response)
+
     res.json({
         id: response.id,
         currency: 'INR',
