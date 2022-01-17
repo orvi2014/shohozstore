@@ -24,6 +24,9 @@ import {
     PRODUCT_CATEGORY_REQUEST,
     PRODUCT_CATEGORY_SUCCESS,
     PRODUCT_CATEGORY_FAIL,
+    PRODUCT_SORT_REQUEST,
+    PRODUCT_SORT_SUCCESS,
+    PRODUCT_SORT_FAIL
     
 
 } from '../constants/productConstants.js'
@@ -86,6 +89,67 @@ export const listProductCategory = (category, pageNumber='')=> async (dispatch)=
         })
     }
 }
+
+export const sortProducts = (sortBy, pageNumber='',category)=> async (dispatch)=>{
+    try{
+    
+        const {data} = await axios.get(`/api/products/header/${category}?pageNumber=${pageNumber}`) 
+        dispatch({type: PRODUCT_SORT_REQUEST})
+        if(sortBy === 'Price: Low to High'){
+            data.products.sort((a,b)=>{
+                return a.price - b.price
+            })
+
+            dispatch({type: PRODUCT_SORT_SUCCESS})
+            dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data})
+            
+        }
+        
+        else if(sortBy === 'Price: High to Low'){
+            data.products.sort((a,b)=>{
+                return b.price - a.price
+            })
+            dispatch({type: PRODUCT_SORT_SUCCESS})
+            dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data})
+
+        }
+        else if (sortBy === 'Best Rating'){
+            data.products.sort((a,b)=>{
+ 
+                return b.rating - a.rating
+            })
+            dispatch({type: PRODUCT_SORT_SUCCESS})
+            dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data})
+
+        }
+        else if(sortBy === 'Newest'){
+            data.products.sort((a,b)=>{
+          
+                const bval=(b.createdAt.slice(0,10)).replace(new RegExp('-', 'g'),'' );
+                const aval=(a.createdAt.slice(0,10)).replace(new RegExp('-', 'g'),'' );
+                return Number(bval) - Number(aval)
+            })
+            dispatch({type: PRODUCT_SORT_SUCCESS})
+            dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data})
+
+        }
+        else if(sortBy === 'Most Popular'){
+            data.products.sort((a,b)=>{
+                return b.reviews.length - a.reviews.length
+            })
+            dispatch({type: PRODUCT_SORT_SUCCESS})
+            dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data})
+
+        }
+    }
+    catch(error){
+        dispatch({
+            type:PRODUCT_SORT_FAIL, 
+            payload:error.response && error.response.data.message ? error.response.data.message:error.message
+        })
+
+    }}
+
 
 export const deleteProduct = (id)=> async(dispatch, getState )=>{
     try{
@@ -157,7 +221,7 @@ export const updateProduct = (product)=> async(dispatch, getState )=>{
                 Authorization:`Bearer ${userInfo.token}`
             }
         }
-        console.log(product)
+
         const {data} = await axios.put(`/api/products/${product._id}`,product,config)
         
         dispatch({

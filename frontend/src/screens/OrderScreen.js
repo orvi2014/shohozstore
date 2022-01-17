@@ -45,7 +45,7 @@ const OrderScreen = ({history,match}) => {
                 return 
             }
             const data =await fetch(`/api/payments/${orderID}`, {method:"POST"}).then((t)=>t.json())
-            console.log("data is ",data)
+    
             const options = {
             "key": "rzp_test_jffhfACN1gQNzj", // Enter the Key ID generated from the Dashboard
             "amount": data.amount.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -56,9 +56,7 @@ const OrderScreen = ({history,match}) => {
             "order_id": data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": function (response){
                 successPaymentHandler(response)
-                alert(response.razorpay_payment_id);
-                alert(response.razorpay_order_id);
-                alert(response.razorpay_signature)
+             
             },
             "prefill": {
                 "name": order.user.name,
@@ -124,7 +122,6 @@ const OrderScreen = ({history,match}) => {
     },[dispatch,order,orderID, successPay, successDeliver, history, userInfo])
 
     const successPaymentHandler = (paymentResult)=>{
-        console.log("payment result",paymentResult)
         dispatch(payOrder(orderID,paymentResult))
     }
 

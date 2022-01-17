@@ -86,7 +86,7 @@ const updateOrderToPaid = asyncHandler(async(req, res)=>{
             "country":order.shippingAddress.country,
             "pin_code":order.shippingAddress.postalCode,
             "phone_no":order.phone,
-            "sub_total":order.orderItems.reduce((sum, item) => sum + Number(item.price), 0),
+            "sub_total":order.orderItems.reduce((sum, item) => sum + (Number(item.price)*Number(item.qty)), 0),
             "shipping":order.shippingPrice,
             "tax":order.taxPrice,
             "total_price":order.totalPrice,

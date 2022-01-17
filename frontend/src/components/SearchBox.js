@@ -9,7 +9,7 @@ const SearchBox = ({history}) => {
         }else{
             history.push('/')
         }
-        console.log(keyword)
+       
     }
     return (
         <>

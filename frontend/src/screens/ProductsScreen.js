@@ -15,7 +15,7 @@ const ProductsScreen = ({match}) => {
     const keyword = match.params.keyword;
     const pageNumber = match.params.pageNumber || 1;
     const category = match.params.category || match.params.hcategory;
-    console.log(category);
+  
 
     const dispatch = useDispatch()
     const productCategory=useSelector(state => state.productCategory)
@@ -23,7 +23,7 @@ const ProductsScreen = ({match}) => {
 
     const productList=useSelector(state => state.productList)
     const { products:keyProd } = productList
-    console.log(keyProd);
+
 
     useEffect(()=>{
         dispatch(listProductCategory(category,pageNumber));
