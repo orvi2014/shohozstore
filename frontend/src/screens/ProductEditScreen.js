@@ -55,9 +55,7 @@ const ProductEditScreen = ({ match, history }) => {
      [dispatch, history, productId, product, successUpdate])
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0]
-    console.log("FILES", e.target.files)
-    console.log(file)
-    console.log(Image)
+   
     const formData = new FormData()
     formData.append('image', file)
     setUploading(true)
@@ -72,16 +70,13 @@ const ProductEditScreen = ({ match, history }) => {
       setUploading(false)
     }
     catch(error){
-      console.log(error)
       setUploading(false)
     }
   }
 
   const uploadFileHandler2 = async (e) => {
     const file = e.target.files[0]
-    console.log("FILES", e.target.files)
-    console.log(file)
-    console.log(carouselImage)
+    
     const formData = new FormData()
     formData.append('image', file)
     setCarouselUpload(true)
@@ -96,13 +91,12 @@ const ProductEditScreen = ({ match, history }) => {
       setCarouselUpload(false)
     }
     catch(error){
-      console.log(error)
       setCarouselUpload(false)
     }
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(product._id)
+
     //Update Product
     dispatch(updateProduct({
       _id:product._id,

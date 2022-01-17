@@ -33,13 +33,7 @@ const ProductScreen = (props) => {
         product.reviews.filter(review=> review.rating===2).length*100/product.reviews.length+'%', 
         product.reviews.filter(review=> review.rating===1).length*100/product.reviews.length+'%'
     ]
-    // var review5 =product.reviews.filter(review=> review.rating===5).length*100/product.reviews.length+"%"
-    // var review4 =product.reviews.filter(review=> review.rating===4).length*100/product.reviews.length+"%"
-    // var review3 =product.reviews.filter(review=> review.rating===3).length*100/product.reviews.length+"%"
-    // var review2 =product.reviews.filter(review=> review.rating===2).length*100/product.reviews.length+"%"
-    // var review1 =product.reviews.filter(review=> review.rating===1).length*100/product.reviews.length+"%"
-    
-    
+
     useEffect(()=>{
         if(successProductReview){
             alert("Review Submitted!")
