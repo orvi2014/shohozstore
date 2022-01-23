@@ -26,13 +26,13 @@ const Header = () => {
         {
           name: 'New Arrivals',
           href: '/products/header/Women-New Arrivals',
-          imageSrc: 'https://images.unsplash.com/photo-1513094735237-8f2714d57c13?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=jon-ly-Xn7GvimQrk8-unsplash.jpg',
+          imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,w_500/v1642854727/Header%20/new-arrivals-Women_yatkjn.webp',
           imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
         },
         {
           name: 'Basic Tees',
           href: '/products/header/Women-Basic Tees',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
+          imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,w_500/v1642854769/Header%20/basic-tees-Women_gbv8nl.webp',
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
       ],
@@ -85,13 +85,13 @@ const Header = () => {
         {
           name: 'New Arrivals',
           href: '/products/header/Men-New Arrivals',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
+          imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,w_500/v1642854856/Header%20/new-arrivals-Men_xprqak.webp',
           imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
         },
         {
           name: 'Designer Tees',
           href: '/products/header/Men-Designer Tees',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
+          imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,w_500/v1642854855/Header%20/designer-tees-Men_fjajvl.webp',
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
         },
@@ -139,13 +139,13 @@ const Header = () => {
         {
           name: 'New Arrivals',
           href: '/products/header/Technology-New Arrivals',
-          imageSrc: 'https://images.unsplash.com/photo-1589894404892-7310b92ea7a2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=deep-advani-9MMx869kt0A-unsplash.jpg',
+          imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,w_500/v1642854937/Header%20/new-arrivals-Technology_l8jrjh.webp',
           imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
         },
         {
           name: 'Top Rated',
           href: '/products/header/Technology-Top Rated',
-          imageSrc: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=andras-vas-Bd7gNnWJBkU-unsplash.jpg',
+          imageSrc: 'https://res.cloudinary.com/xzen/image/upload/c_scale,w_500/v1642854937/Header%20/top-rated-Technology_jlywau.webp',
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
       ],
