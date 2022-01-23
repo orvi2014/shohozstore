@@ -179,21 +179,26 @@ const ProductScreen = (props) => {
                         <div className="d-flex">
                             <div className="text-center m-2" >
                                 <span className="display-4 font-weight-bolder">{product.rating}</span>
-                                <p className="text-black-50">out of 5</p>
+                                <div className>
+                                    out of 5
+                                </div>
+                                 
+                                
                             </div>
                             <div className="flex-grow-1">
                                 {reviews.map((review, index)=>(
                                     <div className="row align-items-center">
-                                    <div className="col-2 text-right">
+                                    <div className="col-3 text-right">
                                         {reviews.length-index} <i style={{color:"rgb(248, 232, 37)"}}className="fas fa-star"></i>
                                     </div>
                                     <div className="col-8">
                                         <div className="progress" style={{height:"15px"}}>
                                         {review === 'NaN%' ? 
-                                        <div className="progress-bar" role="progressbar" style={{width:'100%'}} aria-valuenow="75" 
-                                        aria-valuemin="0" aria-valuemax="100">0%</div>
-                                        :<div className="progress-bar" role="progressbar" style={{width:review}} aria-valuenow="75" 
-                                        aria-valuemin="0" aria-valuemax="100">{review}</div>
+                                            <div className="progress-bar" role="progressbar" style={{width:'100%'}} aria-valuenow="100" 
+                                            aria-valuemin="0" aria-valuemax="100">0%</div>
+                                        :
+                                            <div className="progress-bar" role="progressbar" style={{width:review}} aria-valuenow="100" 
+                                            aria-valuemin="0" aria-valuemax="100">{review}</div>
                                         }
                                         </div>
                                     </div>

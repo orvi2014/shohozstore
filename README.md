@@ -4,14 +4,13 @@
 
 This is a full stack E-Commerce Application built using MongoDB, Express.JS, React.JS, Node.JS
 
-<!-- ![screenshot](https://github.com/bradtraversy/proshop_mern/blob/master/uploads/Screen%20Shot%202020-09-29%20at%205.50.52%20PM.png) -->
-
 ## Features
 
 - Full featured shopping cart
 - Product reviews and ratings
 - Top products carousel
 - Product pagination
+- Product Sort
 - Breadcrumbs for navigational trail
 - User profile with orders
 - Admin product management
@@ -48,7 +47,7 @@ RAZOR_PAY_KEY_ID=Your razor pay key id [RazorPay Payment Gateway]
 SENDGRID_API_KEY= Your Sendgrid API Key [Email- Integration]
 ```
 
-**Note: For basic functionality without payment gateway , authentication & Email Integration then, only MONGO_URI, NODE_ENV & PORT env is required**
+**Note: For basic functionality without payment gateway, authentication & Email Integration, only MONGO_URI, NODE_ENV & PORT env is required**
 
 ### Enable Email - Integration
 
