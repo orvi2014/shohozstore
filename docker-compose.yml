@@ -3,6 +3,11 @@ services:
     build: ./
     ports:
       - '5000:5000'
+
+    container_name: mern-e-commerce_server
+
+    env_file:
+      - .env
     # volumes:
     #     - ./server:/usr/src/app/server
   client:
@@ -11,3 +16,6 @@ services:
     #     - ./client:/usr/src/app/client
     ports:
       - '3000:3000'
+
+    container_name: mern-e-commerce_client
+  
