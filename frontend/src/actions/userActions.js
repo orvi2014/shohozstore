@@ -29,7 +29,7 @@ export const login = (email, password)=> async(dispatch)=>{
             }
         }
 
-        const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/login`, {email,password}, config)
+        const {data} = await axios.post(`https://web-production-fb3f.up.railway.app/api/users/login`, {email,password}, config)
 
 
         dispatch({
@@ -79,7 +79,7 @@ export const register = (name, email, password)=> async(dispatch)=>{
             }
         }
 
-        const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, {name,email,password}, config)
+        const {data} = await axios.post(`https://web-production-fb3f.up.railway.app/api/users/register`, {name,email,password}, config)
 
 
         dispatch({
@@ -117,7 +117,7 @@ export const getUserDetails = (id)=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/${id}`, config)
+        const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/users/${id}`, config)
    
 
 
@@ -150,7 +150,7 @@ export const updateUserProfile = (user)=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.put(`${process.env.REACT_APP_API_URL}/api/users/profile`,user, config)
+        const {data} = await axios.put(`https://web-production-fb3f.up.railway.app/api/users/profile`,user, config)
 
 
 
@@ -190,7 +190,7 @@ export const listUsers = ()=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`, config)
+        const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/users`, config)
 
 
 
@@ -223,7 +223,7 @@ export const deleteUser = (id)=> async(dispatch, getState )=>{
             }
         }
 
-        await axios.delete(`${process.env.REACT_APP_API_URL}/api/users/${id}`, config)
+        await axios.delete(`https://web-production-fb3f.up.railway.app/api/users/${id}`, config)
     
 
 
@@ -255,7 +255,7 @@ export const updateUser = (user)=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.put(`${process.env.REACT_APP_API_URL}/api/users/${user._id}`,user, config)
+        const {data} = await axios.put(`https://web-production-fb3f.up.railway.app/api/users/${user._id}`,user, config)
     
 
 

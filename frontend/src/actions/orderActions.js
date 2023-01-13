@@ -19,7 +19,7 @@ export const createOrder = (order)=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/api/orders`,order, config)
+        const {data} = await axios.post(`https://web-production-fb3f.up.railway.app/api/orders`,order, config)
      
 
 
@@ -51,7 +51,7 @@ export const getOrderDetails = (id)=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders/${id}`,config)
+        const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/orders/${id}`,config)
       
 
 
@@ -84,7 +84,7 @@ export const payOrder = (orderId, paymentResult)=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.put(`${process.env.REACT_APP_API_URL}/api/orders/${orderId}/pay`,paymentResult,config)
+        const {data} = await axios.put(`https://web-production-fb3f.up.railway.app/api/orders/${orderId}/pay`,paymentResult,config)
         localStorage.removeItem('cartItems');
 
 
@@ -114,7 +114,7 @@ export const deliverOrder = (order)=> async(dispatch, getState )=>{
                 Authorization:`Bearer ${userInfo.token}`
             }
         }
-        const {data} = await axios.put(`${process.env.REACT_APP_API_URL}/api/orders/${order._id}/deliver`,{},config)
+        const {data} = await axios.put(`https://web-production-fb3f.up.railway.app/api/orders/${order._id}/deliver`,{},config)
    
 
 
@@ -146,7 +146,7 @@ export const listMyOrder = ()=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders/myorders`,config)
+        const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/orders/myorders`,config)
 
 
 
@@ -178,7 +178,7 @@ export const listOrders = ()=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders`,config)
+        const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/orders`,config)
 
 
 
