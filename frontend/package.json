@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "proxy": "https://web-production-fb3f.up.railway.app/",
-  "homepage": "./",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
