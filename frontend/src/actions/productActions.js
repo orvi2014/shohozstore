@@ -71,7 +71,7 @@ export const listProductCategory = (category, pageNumber='')=> async (dispatch)=
     try{
         dispatch({type: PRODUCT_CATEGORY_REQUEST})
         if(category === 'Electronics' || category === 'Clothing' || category === 'Shoes' || category === 'Accessories' || category === 'Watches' || category === 'Perfumes'){
-            const {data} = await axios.get(`https://web-production-fb3f.up.railway.appapi/products/category/${category}?pageNumber=${pageNumber}`)
+            const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/products/category/${category}?pageNumber=${pageNumber}`)
             dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data,})
         }
         else{
