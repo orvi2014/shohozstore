@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "https://web-production-fb3f.up.railway.app/",
+  "proxy": "https://xzen-server.onrender.com/",
   "homepage": ".",
   "version": "0.1.0",
   "private": true,

@@ -35,7 +35,7 @@ export const listProducts = (keyword='', pageNumber='')=> async (dispatch)=>{
     try{
         dispatch({type: PRODUCT_LIST_REQUEST})
 
-        const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/products?keyword=${keyword}&pageNumber=${pageNumber}`)
+        const {data} = await axios.get(`https://xzen-server.onrender.com/api/products?keyword=${keyword}&pageNumber=${pageNumber}`)
 
         dispatch({type:PRODUCT_LIST_SUCCESS, payload:data,})
 
@@ -54,7 +54,7 @@ export const listProductDetails = (id)=> async (dispatch)=>{
     try{
         dispatch({type: PRODUCT_DETAILS_REQUEST})
 
-        const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/products/${id}`)
+        const {data} = await axios.get(`https://xzen-server.onrender.com/api/products/${id}`)
 
         dispatch({type:PRODUCT_DETAILS_SUCCESS, payload:data,})
 
@@ -71,11 +71,11 @@ export const listProductCategory = (category, pageNumber='')=> async (dispatch)=
     try{
         dispatch({type: PRODUCT_CATEGORY_REQUEST})
         if(category === 'Electronics' || category === 'Clothing' || category === 'Shoes' || category === 'Accessories' || category === 'Watches' || category === 'Perfumes'){
-            const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/products/category/${category}?pageNumber=${pageNumber}`)
+            const {data} = await axios.get(`https://xzen-server.onrender.com/api/products/category/${category}?pageNumber=${pageNumber}`)
             dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data,})
         }
         else{
-            const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/products/header/${category}?pageNumber=${pageNumber}`)
+            const {data} = await axios.get(`https://xzen-server.onrender.com/api/products/header/${category}?pageNumber=${pageNumber}`)
             dispatch({type:PRODUCT_CATEGORY_SUCCESS, payload:data,})
         }
 
@@ -93,7 +93,7 @@ export const listProductCategory = (category, pageNumber='')=> async (dispatch)=
 export const sortProducts = (sortBy, pageNumber='',category)=> async (dispatch)=>{
     try{
     
-        const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/products/header/${category}?pageNumber=${pageNumber}`) 
+        const {data} = await axios.get(`https://xzen-server.onrender.com/api/products/header/${category}?pageNumber=${pageNumber}`) 
         dispatch({type: PRODUCT_SORT_REQUEST})
         if(sortBy === 'Price: Low to High'){
             data.products.sort((a,b)=>{
@@ -163,7 +163,7 @@ export const deleteProduct = (id)=> async(dispatch, getState )=>{
             }
         }
 
-        await axios.delete(`https://web-production-fb3f.up.railway.app/api/products/${id}`,config)
+        await axios.delete(`https://xzen-server.onrender.com/api/products/${id}`,config)
         
         dispatch({
             type:PRODUCT_DELETE_SUCCESS,
@@ -192,7 +192,7 @@ export const createProduct = ()=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.post(`https://web-production-fb3f.up.railway.app/api/products/create`,{},config)
+        const {data} = await axios.post(`https://xzen-server.onrender.com/api/products/create`,{},config)
         
         dispatch({
             type:PRODUCT_CREATE_SUCCESS,
@@ -222,7 +222,7 @@ export const updateProduct = (product)=> async(dispatch, getState )=>{
             }
         }
 
-        const {data} = await axios.put(`https://web-production-fb3f.up.railway.app/api/products/${product._id}`,product,config)
+        const {data} = await axios.put(`https://xzen-server.onrender.com/api/products/${product._id}`,product,config)
         
         dispatch({
             type:PRODUCT_UPDATE_SUCCESS,
@@ -252,7 +252,7 @@ export const createProductReview = (productId, review)=> async(dispatch, getStat
                 Authorization:`Bearer ${userInfo.token}`
             }
         }
-        await axios.post(`https://web-production-fb3f.up.railway.app/api/products/${productId}/reviews`,review,config)
+        await axios.post(`https://xzen-server.onrender.com/api/products/${productId}/reviews`,review,config)
         
         dispatch({
             type:PRODUCT_CREATE_REVIEW_SUCCESS,
@@ -272,7 +272,7 @@ export const createProductReview = (productId, review)=> async(dispatch, getStat
 export const listTopProducts = ()=> async (dispatch)=>{
     try{
         dispatch({type: PRODUCT_TOP_REQUEST})
-        const {data} = await axios.get(`https://web-production-fb3f.up.railway.app/api/products/top`)
+        const {data} = await axios.get(`https://xzen-server.onrender.com/api/products/top`)
 
         dispatch({type:PRODUCT_TOP_SUCCESS, payload:data,})
 
